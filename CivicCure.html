@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>স্বাস্থ্যসেবা অভিযোগ ব্যবস্থাপনা - Healthcare Complaint Management</title>
+    <script src="https://cdn.tailwindcss.com
+"></script>
+    <style>
+        .ios-blur { backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); }
+        .ios-shadow { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1); }
+        .ios-card { background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .fade-in { animation: fadeIn 0.6s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .slide-up { animation: slideUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        @keyframes slideUp { from { transform: translateY(100%); } to { transform: translateY(0); } }
+        .pulse-glow { animation: pulseGlow 2s infinite; }
+        @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); } 50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); } }
+        .typing-dots { animation: typing 1.4s infinite; }
+        @keyframes typing { 0%, 60%, 100% { transform: translateY(0); } 30% { transform: translateY(-10px); } }
+        .gradient-text { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .ios-button { transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .ios-button:active { transform: scale(0.95); }
+        .glass-morphism { background: rgba(255, 255, 255, 0.25); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.18); }
+        .medical-gradient { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
+        .bangla-font { font-family: 'SolaimanLipi', 'Kalpurush', 'Nikosh', sans-serif; }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 min-h-screen">
+    <!-- iOS Style Navigation -->
+    <nav class="ios-blur ios-shadow sticky top-0 z-50 bg-white/80 border-b border-white/20">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center space-x-4">
+                    <div class="w-14 h-14 medical-gradient rounded-2xl flex items-center justify-center pulse-glow">
+                        <span class="text-white font-bold text-xl">🏥</span>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold gradient-text">স্বাস্থ্যসেবা অভিযোগ ব্যবস্থাপনা</h1>
+                        <p class="text-sm text-gray-600">Healthcare Complaint Management System</p>
+                    </div>
+                </div>
+                <div class="flex space-x-3">
+                    <button onclick="switchView('mobile')" class="ios-button px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-2xl font-medium ios-shadow">
+                        📱 মোবাইল অ্যাপ
+                    </button>
+                    <button onclick="switchView('dashboard')" class="ios-button px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-500 text-white rounded-2xl font-medium ios-shadow">
+                        📊 ড্যাশবোর্ড
+                    </button>
+                    <button onclick="switchView('kiosk')" class="ios-button px-6 py-3 bg-gradient-to-r from-green-500 to-blue-500 text-white rounded-2xl font-medium ios-shadow">
+                        🖥️  কম্পিউটার </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile App View -->
+    <div id="mobile-view" class="max-w-sm mx-auto mt-8">
+        <div class="ios-card ios-shadow rounded-3xl overflow-hidden">
+            <!-- Mobile Header -->
+            <div class="medical-gradient p-6 text-white">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h2 class="text-xl font-bold bangla-font">স্বাস্থ্য সহায়ক</h2>
+                        <p class="text-white/80">Health Assistant AI</p>
+                    </div>
+                    <div class="w-12 h-12 bg-white/20 rounded-2xl flex items-center justify-center pulse-glow">
+                        <span class="text-2xl">🤖</span>
+                    </div>
+                </div>
+                <div class="glass-morphism rounded-2xl p-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-3 h-3 bg-green-400 rounded-full pulse-glow"></div>
+                        <span class="text-sm bangla-font">এআই সহায়ক সক্রিয় • রিয়েল-টাইম বিশ্লেষণ চালু</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Content -->
+            <div id="mobile-content" class="p-6">
+                <!-- Home Screen -->
+                <div id="mobile-home" class="space-y-6">
+                    <!-- AI Greeting -->
+                    <div class="glass-morphism rounded-2xl p-5 border border-blue-200/30">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center">
+                                <span class="text-white">🤖</span>
+                            </div>
+                            <div class="flex-1">
+                                <p class="text-sm font-medium text-blue-800 bangla-font">এআই সহায়ক</p>
+                                <p class="text-sm text-blue-700 bangla-font"> আমি আপনার স্বাস্থ্যসেবা অভিযোগে সাহায্য করতে এসেছি। আমি স্বয়ংক্রিয়ভাবে আপনার সমস্যা বিশ্লেষণ করে সঠিক বিভাগে পাঠাতে পারি।</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Smart Actions Grid -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="showSmartComplaint()" class="ios-button glass-morphism rounded-2xl p-5 hover:scale-105 transition-all">
+                            <div class="text-4xl mb-3">🧠</div>
+                            <div class="text-sm font-medium text-red-700 bangla-font">স্মার্ট অভিযোগ</div>
+                            <div class="text-xs text-red-600">এআই-চালিত ফাইলিং</div>
+                        </button>
+                        <button onclick="showVoiceComplaint()" class="ios-button glass-morphism rounded-2xl p-5 hover:scale-105 transition-all">
+                            <div class="text-4xl mb-3">🎤</div>
+                            <div class="text-sm font-medium text-blue-700 bangla-font">ভয়েস সহায়ক</div>
+                            <div class="text-xs text-blue-600">কণ্ঠস্বর চিনতে পারে</div>
+                        </button>
+                        <button onclick="showPredictiveTracking()" class="ios-button glass-morphism rounded-2xl p-5 hover:scale-105 transition-all">
+                            <div class="text-4xl mb-3">🔮</div>
+                            <div class="text-sm font-medium text-purple-700 bangla-font">ভবিষ্যৎ ট্র্যাকিং</div>
+                            <div class="text-xs text-purple-600">এআই পূর্বাভাস</div>
+                        </button>
+                        <button onclick="showMedicalDirectory()" class="ios-button glass-morphism rounded-2xl p-5 hover:scale-105 transition-all">
+                            <div class="text-4xl mb-3">🏥</div>
+                            <div class="text-sm font-medium text-green-700 bangla-font">হাসপাতাল খুঁজুন</div>
+                            <div class="text-xs text-green-600">সব জেলার তালিকা</div>
+                        </button>
+                    </div>
+
+                    <!-- Multi-Channel Interaction -->
+                    <div class="glass-morphism rounded-2xl p-5 mb-6">
+                        <h4 class="font-medium text-purple-800 mb-4 flex items-center bangla-font">
+                            <span class="mr-2">📡</span> মাল্টি-চ্যানেল ইন্টারঅ্যাকশন
+                        </h4>
+                        <div class="grid grid-cols-2 gap-3">
+                            <button onclick="showSMSInterface()" class="glass-morphism rounded-xl p-3 hover:scale-105 transition-all ios-button">
+                                <div class="text-2xl mb-1">📱</div>
+                                <div class="text-xs font-medium text-blue-700 bangla-font">SMS/USSD</div>
+                                <div class="text-xs text-blue-600">*৮০০#</div>
+                            </button>
+                            <button onclick="showIVRInterface()" class="glass-morphism rounded-xl p-3 hover:scale-105 transition-all ios-button">
+                                <div class="text-2xl mb-1">☎️</div>
+                                <div class="text-xs font-medium text-green-700 bangla-font">IVR কল</div>
+                                <div class="text-xs text-green-600">১৬২৬৩</div>
+                            </button>
+                            <button onclick="showWebPortal()" class="glass-morphism rounded-xl p-3 hover:scale-105 transition-all ios-button">
+                                <div class="text-2xl mb-1">🌐</div>
+                                <div class="text-xs font-medium text-purple-700 bangla-font">ওয়েব পোর্টাল</div>
+                                <div class="text-xs text-purple-600">অনলাইন</div>
+                            </button>
+                            <button onclick="showKioskAccess()" class="glass-morphism rounded-xl p-3 hover:scale-105 transition-all ios-button">
+                                <div class="text-2xl mb-1">🖥️</div>
+                                <div class="text-xs font-medium text-orange-700 bangla-font">হাসপাতাল কিয়স্ক</div>
+                                <div class="text-xs text-orange-600">স্থানীয়</div>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Additional Features -->
+                    <div class="grid grid-cols-2 gap-4">
+                        <button onclick="showEmergencyServices()" class="ios-button glass-morphism rounded-2xl p-4 hover:scale-105 transition-all">
+                            <div class="text-3xl mb-2">🚨</div>
+                            <div class="text-sm font-medium text-red-700 bangla-font">জরুরি সেবা</div>
+                        </button>
+                        <button onclick="showMedicineTracker()" class="ios-button glass-morphism rounded-2xl p-4 hover:scale-105 transition-all">
+                            <div class="text-3xl mb-2">💊</div>
+                            <div class="text-sm font-medium text-green-700 bangla-font">ওষুধ ট্র্যাকার</div>
+                        </button>
+                        <button onclick="showDoctorSchedule()" class="ios-button glass-morphism rounded-2xl p-4 hover:scale-105 transition-all">
+                            <div class="text-3xl mb-2">👨‍⚕️</div>
+                            <div class="text-sm font-medium text-blue-700 bangla-font">ডাক্তার সময়সূচী</div>
+                        </button>
+                        <button onclick="showHealthTips()" class="ios-button glass-morphism rounded-2xl p-4 hover:scale-105 transition-all">
+                            <div class="text-3xl mb-2">💡</div>
+                            <div class="text-sm font-medium text-purple-700 bangla-font">স্বাস্থ্য টিপস</div>
+                        </button>
+                    </div>
+
+                    <!-- AI Insights Panel -->
+                    <div class="glass-morphism rounded-2xl p-5">
+                        <h4 class="font-medium text-purple-800 mb-4 flex items-center bangla-font">
+                            <span class="mr-2">🧠</span> আপনার জন্য এআই পরামর্শ
+                        </h4>
+                        <div class="space-y-3 text-sm">
+                            <div class="flex items-center justify-between">
+                                <span class="text-purple-700 bangla-font">ঢাকা মেডিকেল কলেজে যাওয়ার সেরা সময়:</span>
+                                <span class="text-purple-600 font-medium">সকাল ১০-১১টা</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-purple-700 bangla-font">প্রত্যাশিত অপেক্ষার সময়:</span>
+                                <span class="text-green-600 font-medium">১৫-২০ মিনিট</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="text-purple-700 bangla-font">অনুরূপ অভিযোগ সমাধান:</span>
+                                <span class="text-blue-600 font-medium">৯৪% ২ দিনে</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Smart Complaint Form -->
+                <div id="smart-complaint" class="hidden space-y-5">
+                    <div class="flex items-center mb-4">
+                        <button onclick="showMobileHome()" class="mr-3 p-3 hover:bg-gray-100 rounded-2xl ios-button">←</button>
+                        <h3 class="text-lg font-semibold bangla-font">এআই-চালিত অভিযোগ দাখিল</h3>
+                    </div>
+
+                    <!-- AI-Driven Triaging Panel -->
+                    <div id="ai-analysis" class="glass-morphism rounded-2xl p-5 border border-blue-200/30">
+                        <div class="flex items-center space-x-3 mb-3">
+                            <div class="w-8 h-8 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl flex items-center justify-center">
+                                <span class="text-white text-sm">🧠</span>
+                            </div>
+                            <span class="text-sm font-medium text-blue-800 bangla-font">এআই ট্রায়াজিং সিস্টেম</span>
+                            <div class="typing-dots text-blue-600">●●●</div>
+                        </div>
+                        <div id="ai-feedback" class="text-sm text-blue-700 bangla-font">
+                            আপনার অভিযোগ লিখতে শুরু করুন, আমি রিয়েল-টাইমে বৈধতা যাচাই, শ্রেণীবিভাগ এবং গুরুত্ব নির্ধারণ করব...
+                        </div>
+                        
+                        <!-- AI Validation Status -->
+                        <div id="validation-status" class="hidden mt-4 space-y-2">
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-gray-600 bangla-font">বৈধতা যাচাই:</span>
+                                <div id="validity-indicator" class="flex items-center space-x-1">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                    <span class="text-green-700 bangla-font">বৈধ</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-gray-600 bangla-font">ডুপ্লিকেট চেক:</span>
+                                <div id="duplicate-indicator" class="flex items-center space-x-1">
+                                    <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                                    <span class="text-blue-700 bangla-font">অনন্য</span>
+                                </div>
+                            </div>
+                            <div class="flex items-center justify-between text-xs">
+                                <span class="text-gray-600 bangla-font">স্প্যাম স্কোর:</span>
+                                <div id="spam-indicator" class="flex items-center space-x-1">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                    <span class="text-green-700">২%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Hospital Selection -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3 bangla-font">হাসপাতাল/সুবিধা নির্বাচন করুন</label>
+                        <select id="smart-hospital" class="w-full p-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent ios-shadow">
+                            <option>এআই স্বয়ংক্রিয়ভাবে সনাক্ত করবে...</option>
+                            <optgroup label="ঢাকা বিভাগ">
+                                <option>ঢাকা মেডিকেল কলেজ হাসপাতাল</option>
+                                <option>বঙ্গবন্ধু শেখ মুজিব মেডিকেল বিশ্ববিদ্যালয়</option>
+                                <option>শহীদ সোহরাওয়ার্দী মেডিকেল কলেজ</option>
+                                <option>স্যার সলিমুল্লাহ মেডিকেল কলেজ</option>
+                            </optgroup>
+                            <optgroup label="চট্টগ্রাম বিভাগ">
+                                <option>চট্টগ্রাম মেডিকেল কলেজ হাসপাতাল</option>
+                                <option>কক্সবাজার সদর হাসপাতাল</option>
+                                <option>কুমিল্লা মেডিকেল কলেজ</option>
+                            </optgroup>
+                            <optgroup label="সিলেট বিভাগ">
+                                <option>সিলেট এমএজি ওসমানী মেডিকেল কলেজ</option>
+                                <option>সুনামগঞ্জ সদর হাসপাতাল</option>
+                            </optgroup>
+                            <optgroup label="রাজশাহী বিভাগ">
+                                <option>রাজশাহী মেডিকেল কলেজ</option>
+                                <option>রংপুর মেডিকেল কলেজ</option>
+                            </optgroup>
+                            <optgroup label="খুলনা বিভাগ">
+                                <option>খুলনা মেডিকেল কলেজ</option>
+                                <option>যশোর সদর হাসপাতাল</option>
+                            </optgroup>
+                            <optgroup label="বরিশাল বিভাগ">
+                                <option>শের-ই-বাংলা মেডিকেল কলেজ</option>
+                                <option>পটুয়াখালী সদর হাসপাতাল</option>
+                            </optgroup>
+                            <optgroup label="ময়মনসিংহ বিভাগ">
+                                <option>ময়মনসিংহ মেডিকেল কলেজ</option>
+                                <option>জামালপুর সদর হাসপাতাল</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <!-- Complaint Description -->
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3 bangla-font">আপনার সমস্যার বিবরণ দিন</label>
+                        <textarea id="smart-complaint-text" oninput="analyzeComplaint()" class="w-full p-4 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 focus:border-transparent h-32 ios-shadow" placeholder="আপনার অভিযোগের বিস্তারিত বর্ণনা করুন। এআই স্বয়ংক্রিয়ভাবে শ্রেণীবদ্ধ করে অগ্রাধিকার দেবে..."></textarea>
+                    </div>
+
+                    <!-- AI Predictions -->
+                    <div id="ai-predictions" class="hidden glass-morphism rounded-2xl p-5">
+                        <h4 class="text-sm font-medium text-green-800 mb-3 flex items-center bangla-font">
+                            <span class="mr-2">🔮</span> এআই পূর্বাভাস
+                        </h4>
+                        <div class="grid grid-cols-2 gap-3 text-xs">
+                            <div class="bg-white/50 rounded-xl p-3">
+                                <div class="text-gray-600 bangla-font">শ্রেণী</div>
+                                <div id="predicted-category" class="font-medium text-blue-700">-</div>
+                            </div>
+                            <div class="bg-white/50 rounded-xl p-3">
+                                <div class="text-gray-600 bangla-font">অগ্রাধিকার</div>
+                                <div id="predicted-priority" class="font-medium text-orange-700">-</div>
+                            </div>
+                            <div class="bg-white/50 rounded-xl p-3">
+                                <div class="text-gray-600 bangla-font">সমাধানের সময়</div>
+                                <div id="predicted-resolution" class="font-medium text-green-700">-</div>
+                            </div>
+                            <div class="bg-white/50 rounded-xl p-3">
+                                <div class="text-gray-600 bangla-font">মানসিক অবস্থা</div>
+                                <div id="predicted-sentiment" class="font-medium text-purple-700">-</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Smart Attachments -->
+                    <div class="flex space-x-3">
+                        <button onclick="aiPhotoAnalysis()" class="flex-1 glass-morphism text-blue-700 py-4 rounded-2xl font-medium hover:scale-105 transition-all ios-button bangla-font">
+                            📷 এআই ছবি বিশ্লেষণ
+                        </button>
+                        <button onclick="voiceToText()" class="flex-1 glass-morphism text-green-700 py-4 rounded-2xl font-medium hover:scale-105 transition-all ios-button bangla-font">
+                            🎤 কণ্ঠস্বর-থেকে-লেখা
+                        </button>
+                    </div>
+
+                    <button onclick="submitSmartComplaint()" class="w-full medical-gradient text-white py-4 rounded-2xl font-medium hover:scale-105 transition-all ios-button ios-shadow bangla-font">
+                        এআই বিশ্লেষণসহ জমা দিন
+                    </button>
+                </div>
+
+                <!-- Medical Directory -->
+                <div id="medical-directory" class="hidden space-y-5">
+                    <div class="flex items-center mb-4">
+                        <button onclick="showMobileHome()" class="mr-3 p-3 hover:bg-gray-100 rounded-2xl ios-button">←</button>
+                        <h3 class="text-lg font-semibold bangla-font">হাসপাতাল ডিরেক্টরি</h3>
+                    </div>
+
+                    <!-- Search Bar -->
+                    <div class="relative">
+                        <input type="text" id="hospital-search" oninput="searchHospitals()" class="w-full p-4 pl-12 border border-gray-300 rounded-2xl focus:ring-2 focus:ring-blue-500 ios-shadow" placeholder="হাসপাতাল বা জেলার নাম খুঁজুন...">
+                        <span class="absolute left-4 top-4 text-gray-400">🔍</span>
+                    </div>
+
+                    <!-- District Filter -->
+                    <div class="flex space-x-2 overflow-x-auto pb-2">
+                        <button onclick="filterByDivision('all')" class="px-4 py-2 bg-blue-500 text-white rounded-full text-sm whitespace-nowrap ios-button bangla-font">সব বিভাগ</button>
+                        <button onclick="filterByDivision('dhaka')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap ios-button bangla-font">ঢাকা</button>
+                        <button onclick="filterByDivision('chittagong')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap ios-button bangla-font">চট্টগ্রাম</button>
+                        <button onclick="filterByDivision('sylhet')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap ios-button bangla-font">সিলেট</button>
+                        <button onclick="filterByDivision('rajshahi')" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-full text-sm whitespace-nowrap ios-button bangla-font">রাজশাহী</button>
+                    </div>
+
+                    <!-- Hospital List -->
+                    <div id="hospital-list" class="space-y-3 max-h-96 overflow-y-auto">
+                        <!-- Hospitals will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <!-- Emergency Services -->
+                <div id="emergency-services" class="hidden space-y-5">
+                    <div class="flex items-center mb-4">
+                        <button onclick="showMobileHome()" class="mr-3 p-3 hover:bg-gray-100 rounded-2xl ios-button">←</button>
+                        <h3 class="text-lg font-semibold bangla-font">জরুরি সেবা</h3>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="glass-morphism rounded-2xl p-5 border-l-4 border-red-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-medium text-red-800 bangla-font">জাতীয় জরুরি হটলাইন</h4>
+                                <button onclick="callEmergency('999')" class="bg-red-500 text-white px-4 py-2 rounded-xl ios-button">📞 কল করুন</button>
+                            </div>
+                            <p class="text-red-700 text-sm bangla-font">যেকোনো জরুরি অবস্থায় ৯৯৯ নম্বরে কল করুন</p>
+                        </div>
+
+                        <div class="glass-morphism rounded-2xl p-5 border-l-4 border-blue-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-medium text-blue-800 bangla-font">স্বাস্থ্য বাতায়ন</h4>
+                                <button onclick="callEmergency('16263')" class="bg-blue-500 text-white px-4 py-2 rounded-xl ios-button">📞 ১৬২৬৩</button>
+                            </div>
+                            <p class="text-blue-700 text-sm bangla-font">স্বাস্থ্য সেবা সংক্রান্ত তথ্যের জন্য</p>
+                        </div>
+
+                        <div class="glass-morphism rounded-2xl p-5 border-l-4 border-green-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <h4 class="font-medium text-green-800 bangla-font">অ্যাম্বুলেন্স সেবা</h4>
+                                <button onclick="requestAmbulance()" class="bg-green-500 text-white px-4 py-2 rounded-xl ios-button bangla-font">🚑 অনুরোধ</button>
+                            </div>
+                            <p class="text-green-700 text-sm bangla-font">নিকটতম অ্যাম্বুলেন্স খুঁজে পেতে</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Other sections (Voice Complaint, Predictive Tracking, etc.) would follow similar pattern -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Dashboard View -->
+    <div id="dashboard-view" class="hidden max-w-7xl mx-auto mt-8 px-4">
+        <div class="ios-card ios-shadow rounded-3xl p-8 mb-8">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold gradient-text bangla-font">এআই-চালিত স্বাস্থ্যসেবা বিশ্লেষণ</h2>
+                    <p class="text-gray-600 bangla-font">রিয়েল-টাইম এআই অন্তর্দৃষ্টি এবং ভবিষ্যদ্বাণীমূলক বিশ্লেষণ</p>
+                </div>
+                <div class="flex space-x-4">
+                    <div class="medical-gradient text-white px-6 py-3 rounded-2xl ios-shadow">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-3 h-3 bg-green-400 rounded-full pulse-glow"></div>
+                            <span class="text-sm bangla-font">এআই মডেল সক্রিয়</span>
+                        </div>
+                    </div>
+                    <select class="px-6 py-3 border border-gray-300 rounded-2xl ios-shadow bangla-font">
+                        <option>সব হাসপাতাল</option>
+                        <option>ঢাকা মেডিকেল কলেজ</option>
+                        <option>চট্টগ্রাম মেডিকেল কলেজ</option>
+                        <option>সিলেট এমএজি ওসমানী</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Live Dashboard - Real-time Metrics -->
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-red-500 to-red-600 rounded-3xl p-6 text-white ios-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-red-100 bangla-font">মোট অভিযোগ</p>
+                            <p class="text-3xl font-bold" id="live-complaints">১,২৪৭</p>
+                        </div>
+                        <div class="text-4xl opacity-80">📋</div>
+                    </div>
+                    <div class="mt-2 text-xs text-red-100 bangla-font">আজকে +২৩</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-3xl p-6 text-white ios-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-blue-100 bangla-font">সমাধানের হার</p>
+                            <p class="text-3xl font-bold" id="live-resolution">৮৭.৩%</p>
+                        </div>
+                        <div class="text-4xl opacity-80">✅</div>
+                    </div>
+                    <div class="mt-2 text-xs text-blue-100 bangla-font">গড় ১৮ ঘন্টা</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-green-500 to-green-600 rounded-3xl p-6 text-white ios-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-green-100 bangla-font">ডাক্তার উপস্থিতি</p>
+                            <p class="text-3xl font-bold" id="live-doctors">৯২.১%</p>
+                        </div>
+                        <div class="text-4xl opacity-80">👨‍⚕️</div>
+                    </div>
+                    <div class="mt-2 text-xs text-green-100 bangla-font">HRIS ইন্টিগ্রেশন</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-purple-500 to-purple-600 rounded-3xl p-6 text-white ios-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-purple-100 bangla-font">ওষুধ স্টক</p>
+                            <p class="text-3xl font-bold" id="live-medicine">৭৮.৫%</p>
+                        </div>
+                        <div class="text-4xl opacity-80">💊</div>
+                    </div>
+                    <div class="mt-2 text-xs text-purple-100 bangla-font">eLMIS/SCMP</div>
+                </div>
+
+                <div class="bg-gradient-to-br from-orange-500 to-pink-500 rounded-3xl p-6 text-white ios-shadow">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <p class="text-orange-100 bangla-font">সেবার মান</p>
+                            <p class="text-3xl font-bold" id="live-quality">৭.৪/১০</p>
+                        </div>
+                        <div class="text-4xl opacity-80">⭐</div>
+                    </div>
+                    <div class="mt-2 text-xs text-orange-100 bangla-font">রোগী রেটিং</div>
+                </div>
+            </div>
+
+            <!-- Real-time Activity Feed -->
+            <div class="glass-morphism rounded-3xl p-6 mb-8">
+                <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-xl font-semibold text-gray-800 flex items-center bangla-font">
+                        <span class="mr-3">📡</span> রিয়েল-টাইম কার্যক্রম
+                    </h3>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-3 h-3 bg-green-400 rounded-full pulse-glow"></div>
+                        <span class="text-sm text-gray-600 bangla-font">লাইভ আপডেট</span>
+                    </div>
+                </div>
+                <div id="activity-feed" class="space-y-3 max-h-64 overflow-y-auto">
+                    <div class="flex items-center space-x-4 p-3 bg-blue-50 rounded-xl">
+                        <div class="w-2 h-2 bg-blue-500 rounded-full"></div>
+                        <div class="flex-1">
+                            <span class="text-sm text-gray-800 bangla-font">নতুন অভিযোগ: ঢাকা মেডিকেল - ডাক্তারের উপস্থিতি</span>
+                            <div class="text-xs text-gray-500">২ মিনিট আগে</div>
+                        </div>
+                        <span class="px-2 py-1 bg-orange-100 text-orange-800 text-xs rounded-full bangla-font">উচ্চ</span>
+                    </div>
+                    <div class="flex items-center space-x-4 p-3 bg-green-50 rounded-xl">
+                        <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                        <div class="flex-1">
+                            <span class="text-sm text-gray-800 bangla-font">সমাধান: চট্টগ্রাম মেডিকেল - পরিচ্ছন্নতা সমস্যা</span>
+                            <div class="text-xs text-gray-500">৫ মিনিট আগে</div>
+                        </div>
+                        <span class="px-2 py-1 bg-green-100 text-green-800 text-xs rounded-full bangla-font">সমাধান</span>
+                    </div>
+                    <div class="flex items-center space-x-4 p-3 bg-purple-50 rounded-xl">
+                        <div class="w-2 h-2 bg-purple-500 rounded-full"></div>
+                        <div class="flex-1">
+                            <span class="text-sm text-gray-800 bangla-font">এআই সনাক্তকরণ: সিলেট - ডুপ্লিকেট অভিযোগ ব্লক</span>
+                            <div class="text-xs text-gray-500">৮ মিনিট আগে</div>
+                        </div>
+                        <span class="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full bangla-font">স্প্যাম</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- District-wise Performance -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="glass-morphism rounded-3xl p-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center bangla-font">
+                        <span class="mr-3">📊</span> জেলাভিত্তিক কর্মক্ষমতা
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600 bangla-font">ঢাকা বিভাগ</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-32 bg-gray-200 rounded-full h-3">
+                                    <div class="bg-blue-500 h-3 rounded-full" style="width: 95%"></div>
+                                </div>
+                                <span class="text-sm font-medium">৯৫%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600 bangla-font">চট্টগ্রাম বিভাগ</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-32 bg-gray-200 rounded-full h-3">
+                                    <div class="bg-green-500 h-3 rounded-full" style="width: 92%"></div>
+                                </div>
+                                <span class="text-sm font-medium">৯২%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600 bangla-font">সিলেট বিভাগ</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-32 bg-gray-200 rounded-full h-3">
+                                    <div class="bg-purple-500 h-3 rounded-full" style="width: 89%"></div>
+                                </div>
+                                <span class="text-sm font-medium">৮৯%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-gray-600 bangla-font">রাজশাহী বিভাগ</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-32 bg-gray-200 rounded-full h-3">
+                                    <div class="bg-orange-500 h-3 rounded-full" style="width: 87%"></div>
+                                </div>
+                                <span class="text-sm font-medium">৮৭%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Integrated Hospital Data -->
+                <div class="glass-morphism rounded-3xl p-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center bangla-font">
+                        <span class="mr-3">🔗</span> ইন্টিগ্রেটেড হাসপাতাল ডেটা
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-blue-50 rounded-2xl p-4 border-l-4 border-blue-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-800 bangla-font">HRIS বায়োমেট্রিক সিস্টেম</span>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full bangla-font">সংযুক্ত</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 bangla-font">ডাক্তারদের রিয়েল-টাইম উপস্থিতি ট্র্যাকিং - ৯২.১% উপস্থিতির হার</p>
+                            <div class="mt-2 text-xs text-blue-700 bangla-font">শেষ আপডেট: ২ মিনিট আগে</div>
+                        </div>
+                        
+                        <div class="bg-purple-50 rounded-2xl p-4 border-l-4 border-purple-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-800 bangla-font">eLMIS/SCMP ইন্টিগ্রেশন</span>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full"></div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full bangla-font">সক্রিয়</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 bangla-font">সাপ্লাই চেইন ম্যানেজমেন্ট - ওষুধের স্টক ৭৮.৫% উপলব্ধ</p>
+                            <div class="mt-2 text-xs text-purple-700 bangla-font">শেষ সিঙ্ক: ৫ মিনিট আগে</div>
+                        </div>
+                        
+                        <div class="bg-green-50 rounded-2xl p-4 border-l-4 border-green-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-800 bangla-font">স্বাস্থ্য মন্ত্রণালয় API</span>
+                                <div class="flex items-center space-x-2">
+                                    <div class="w-2 h-2 bg-green-500 rounded-full pulse-glow"></div>
+                                    <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full bangla-font">লাইভ</span>
+                                </div>
+                            </div>
+                            <p class="text-sm text-gray-600 bangla-font">MOHFW ডেটাবেস - ৬৪টি জেলার ৮৫০+ হাসপাতালের তথ্য</p>
+                            <div class="mt-2 text-xs text-green-700 bangla-font">API স্ট্যাটাস: ৯৯.৮% আপটাইম</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Accountability Measures -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
+                <div class="glass-morphism rounded-3xl p-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center bangla-font">
+                        <span class="mr-3">⚖️</span> জবাবদিহিতার ব্যবস্থা
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-orange-50 rounded-2xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-800 bangla-font">স্বয়ংক্রিয় অডিট ট্রেইল</span>
+                                <span class="px-3 py-1 bg-orange-100 text-orange-800 text-xs rounded-full bangla-font">সক্রিয়</span>
+                            </div>
+                            <p class="text-sm text-gray-600 bangla-font">সব কার্যক্রম লগ এবং ট্র্যাক করা হচ্ছে</p>
+                        </div>
+                        
+                        <div class="bg-red-50 rounded-2xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-800 bangla-font">এসকেলেশন নিয়ম</span>
+                                <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full bangla-font">৩টি সক্রিয়</span>
+                            </div>
+                            <p class="text-sm text-gray-600 bangla-font">২৪ ঘন্টার বেশি অমীমাংসিত ক্ষেত্রে ঊর্ধ্বতন কর্তৃপক্ষে পাঠানো</p>
+                        </div>
+                        
+                        <div class="bg-blue-50 rounded-2xl p-4">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-800 bangla-font">কর্মক্ষমতা র‍্যাঙ্কিং</span>
+                                <span class="px-3 py-1 bg-blue-100 text-blue-800 text-xs rounded-full bangla-font">সাপ্তাহিক</span>
+                            </div>
+                            <p class="text-sm text-gray-600 bangla-font">সেরা পারফরমিং হাসপাতাল প্রকাশ্যে স্বীকৃতি</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Real-time Alerts -->
+                <div class="glass-morphism rounded-3xl p-8">
+                    <h3 class="text-xl font-semibold text-gray-800 mb-6 flex items-center bangla-font">
+                        <span class="mr-3">🚨</span> রিয়েল-টাইম সতর্কতা
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-red-50 rounded-2xl p-4 border-l-4 border-red-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-800 bangla-font">জরুরি অবস্থা</span>
+                                <span class="px-3 py-1 bg-red-100 text-red-800 text-xs rounded-full bangla-font">উচ্চ ঝুঁকি</span>
+                            </div>
+                            <p class="text-sm text-gray-600 bangla-font">ঢাকা মেডিকেল: জরুরি বিভাগে +৪০% অভিযোগ প্রত্যাশিত</p>
+                        </div>
+                        <div class="bg-yellow-50 rounded-2xl p-4 border-l-4 border-yellow-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-800 bangla-font">কর্মী ঘাটতি</span>
+                                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 text-xs rounded-full bangla-font">মাঝারি</span>
+                            </div>
+                            <p class="text-sm text-gray-600 bangla-font">শিশু বিভাগে কর্মী কম - পুনর্বণ্টনের সুপারিশ</p>
+                        </div>
+                        <div class="bg-green-50 rounded-2xl p-4 border-l-4 border-green-500">
+                            <div class="flex items-center justify-between mb-2">
+                                <span class="text-sm font-medium text-gray-800 bangla-font">উন্নতি সনাক্ত</span>
+                                <span class="px-3 py-1 bg-green-100 text-green-800 text-xs rounded-full bangla-font">ইতিবাচক</span>
+                            </div>
+                            <p class="text-sm text-gray-600 bangla-font">অপেক্ষার সময় অভিযোগ ২ৃ% কমেছে</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Kiosk View -->
+    <div id="kiosk-view" class="hidden max-w-5xl mx-auto mt-8">
+        <div class="ios-card ios-shadow rounded-3xl overflow-hidden">
+            <!-- Kiosk Header -->
+            <div class="medical-gradient p-12 text-white text-center">
+                <h2 class="text-4xl font-bold mb-4 bangla-font">এআই স্বাস্থ্যসেবা সহায়ক কিয়স্ক</h2>
+                <p class="text-2xl bangla-font">AI Healthcare Assistant Kiosk</p>
+                <div class="mt-6 flex items-center justify-center space-x-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-4 h-4 bg-green-400 rounded-full pulse-glow"></div>
+                        <span class="bangla-font">এআই সহায়ক সক্রিয়</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-4 h-4 bg-blue-400 rounded-full pulse-glow"></div>
+                        <span class="bangla-font">কণ্ঠস্বর চিনতে প্রস্তুত</span>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-4 h-4 bg-purple-400 rounded-full pulse-glow"></div>
+                        <span class="bangla-font">বহুভাষিক সহায়তা</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Kiosk Content -->
+            <div id="kiosk-content" class="p-12">
+                <!-- Kiosk Home -->
+                <div id="kiosk-home" class="text-center">
+                    <!-- AI Avatar -->
+                    <div class="mb-12">
+                        <div class="w-40 h-40 mx-auto medical-gradient rounded-full flex items-center justify-center mb-6 pulse-glow">
+                            <span class="text-8xl">🤖</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-gray-800 mb-4 bangla-font">নমস্কার! আমি আপনার এআই স্বাস্থ্য সহায়ক</h3>
+                        <p class="text-xl text-gray-600 bangla-font">Hello! I'm your AI Health Assistant</p>
+                        <p class="text-lg text-gray-500 mt-4 bangla-font">আমি বাংলা ও ইংরেজিতে কথা বুঝতে পারি</p>
+                    </div>
+
+                    <!-- Enhanced Capabilities Grid -->
+                    <div class="grid grid-cols-2 gap-8 max-w-4xl mx-auto mb-12">
+                        <button onclick="showKioskSmartComplaint()" class="glass-morphism rounded-3xl p-12 hover:scale-105 transition-all ios-button">
+                            <div class="text-7xl mb-6">🧠</div>
+                            <div class="text-2xl font-bold text-red-700 mb-4 bangla-font">স্মার্ট অভিযোগ</div>
+                            <div class="text-red-600 bangla-font">এআই-চালিত বিশ্লেষণ ও রাউটিং</div>
+                        </button>
+                        <button onclick="showKioskVoiceInterface()" class="glass-morphism rounded-3xl p-12 hover:scale-105 transition-all ios-button">
+                            <div class="text-7xl mb-6">🎤</div>
+                            <div class="text-2xl font-bold text-blue-700 mb-4 bangla-font">ভয়েস ইন্টারফেস</div>
+                            <div class="text-blue-600 bangla-font">যেকোনো ভাষায় স্বাভাবিকভাবে কথা বলুন</div>
+                        </button>
+                        <button onclick="showKioskMedicalDirectory()" class="glass-morphism rounded-3xl p-12 hover:scale-105 transition-all ios-button">
+                            <div class="text-7xl mb-6">🏥</div>
+                            <div class="text-2xl font-bold text-green-700 mb-4 bangla-font">মেডিকেল ডিরেক্টরি</div>
+                            <div class="text-green-600 bangla-font">সব জেলার হাসপাতালের তথ্য</div>
+                        </button>
+                        <button onclick="showKioskEmergencyServices()" class="glass-morphism rounded-3xl p-12 hover:scale-105 transition-all ios-button">
+                            <div class="text-7xl mb-6">🚨</div>
+                            <div class="text-2xl font-bold text-purple-700 mb-4 bangla-font">জরুরি সেবা</div>
+                            <div class="text-purple-600 bangla-font">তাৎক্ষণিক সহায়তা ও হটলাইন</div>
+                        </button>
+                    </div>
+
+                    <!-- Enhanced AI Status Panel -->
+                    <div class="glass-morphism rounded-3xl p-8 max-w-4xl mx-auto">
+                        <h4 class="text-2xl font-semibold text-purple-800 mb-8 flex items-center justify-center bangla-font">
+                            <span class="mr-3">🤖</span> এআই সিস্টেম স্ট্যাটাস
+                        </h4>
+                        <div class="grid grid-cols-4 gap-6">
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-green-100 rounded-3xl flex items-center justify-center mb-4">
+                                    <span class="text-green-600 text-3xl">✓</span>
+                                </div>
+                                <div class="font-medium text-gray-800 bangla-font">কণ্ঠস্বর চিনতে পারা</div>
+                                <div class="text-green-600 bangla-font">অনলাইন</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-green-100 rounded-3xl flex items-center justify-center mb-4">
+                                    <span class="text-green-600 text-3xl">✓</span>
+                                </div>
+                                <div class="font-medium text-gray-800 bangla-font">ভাষা বিশ্লেষণ</div>
+                                <div class="text-green-600 bangla-font">সক্রিয়</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-green-100 rounded-3xl flex items-center justify-center mb-4">
+                                    <span class="text-green-600 text-3xl">✓</span>
+                                </div>
+                                <div class="font-medium text-gray-800 bangla-font">স্বয়ংক্রিয় রাউটিং</div>
+                                <div class="text-green-600 bangla-font">প্রস্তুত</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="w-16 h-16 mx-auto bg-green-100 rounded-3xl flex items-center justify-center mb-4">
+                                    <span class="text-green-600 text-3xl">✓</span>
+                                </div>
+                                <div class="font-medium text-gray-800 bangla-font">বহুভাষিক সহায়তা</div>
+                                <div class="text-green-600 bangla-font">উপলব্ধ</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Enhanced Success Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50 ios-blur">
+        <div class="ios-card ios-shadow rounded-3xl p-10 max-w-lg mx-4 text-center slide-up">
+            <div class="text-8xl mb-6">🤖</div>
+            <h3 class="text-3xl font-bold text-gray-800 mb-4 bangla-font">এআই বিশ্লেষণ সম্পূর্ণ!</h3>
+            <p id="success-message" class="text-gray-600 mb-6 bangla-font">আপনার অভিযোগ আমাদের এআই সিস্টেম দ্বারা প্রক্রিয়া করা হয়েছে।</p>
+            
+            <!-- Enhanced AI Analysis Results -->
+            <div class="glass-morphism rounded-2xl p-6 mb-8">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="text-center">
+                        <div class="text-gray-600 bangla-font">এআই শ্রেণী:</div>
+                        <div id="result-category" class="font-bold text-blue-700 text-lg">ডাক্তারের উপস্থিতি</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gray-600 bangla-font">অগ্রাধিকার স্তর:</div>
+                        <div id="result-priority" class="font-bold text-orange-700 text-lg">উচ্চ</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gray-600 bangla-font">আনুমানিক সমাধান:</div>
+                        <div id="result-resolution" class="font-bold text-green-700 text-lg">১৮-২৪ ঘন্টা</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-gray-600 bangla-font">আত্মবিশ্বাস:</div>
+                        <div id="result-confidence" class="font-bold text-purple-700 text-lg">৯৪%</div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="text-sm text-gray-500 mb-8 bangla-font">রেফারেন্স আইডি: <span id="reference-id" class="font-mono font-bold">HC-2024-157</span></p>
+            <button onclick="closeModal()" class="medical-gradient text-white px-10 py-4 rounded-2xl text-lg font-medium hover:scale-105 transition-all ios-button bangla-font">
+                বন্ধ করুন
+            </button>
+        </div>
+    </div>
+
+    <script>
+        let currentView = 'mobile';
+        let complaintCounter = 157;
+        let isRecording = false;
+        let analysisTimeout;
+
+        // Enhanced hospital data with all districts
+        const hospitalData = {
+            dhaka: [
+                { name: 'ঢাকা মেডিকেল কলেজ হাসপাতাল', district: 'ঢাকা', type: 'মেডিকেল কলেজ', beds: 2600 },
+                { name: 'বঙ্গবন্ধু শেখ মুজিব মেডিকেল বিশ্ববিদ্যালয়', district: 'ঢাকা', type: 'বিশেষায়িত', beds: 1800 },
+                { name: 'শহীদ সোহরাওয়ার্দী মেডিকেল কলেজ', district: 'ঢাকা', type: 'মেডিকেল কলেজ', beds: 1200 },
+                { name: 'স্যার সলিমুল্লাহ মেডিকেল কলেজ', district: 'ঢাকা', type: 'মেডিকেল কলেজ', beds: 1000 },
+                { name: 'ফরিদপুর মেডিকেল কলেজ', district: 'ফরিদপুর', type: 'মেডিকেল কলেজ', beds: 500 },
+                { name: 'গোপালগঞ্জ সদর হাসপাতাল', district: 'গোপালগঞ্জ', type: 'সদর হাসপাতাল', beds: 250 }
+            ],
+            chittagong: [
+                { name: 'চট্টগ্রাম মেডিকেল কলেজ হাসপাতাল', district: 'চট্টগ্রাম', type: 'মেডিকেল কলেজ', beds: 1500 },
+                { name: 'কক্সবাজার সদর হাসপাতাল', district: 'কক্সবাজার', type: 'সদর হাসপাতাল', beds: 400 },
+                { name: 'কুমিল্লা মেডিকেল কলেজ', district: 'কুমিল্লা', type: 'মেডিকেল কলেজ', beds: 750 },
+                { name: 'নোয়াখালী সদর হাসপাতাল', district: 'নোয়াখালী', type: 'সদর হাসপাতাল', beds: 300 },
+                { name: 'ব্রাহ্মণবাড়িয়া সদর হাসপাতাল', district: 'ব্রাহ্মণবাড়িয়া', type: 'সদর হাসপাতাল', beds: 250 }
+            ],
+            sylhet: [
+                { name: 'সিলেট এমএজি ওসমানী মেডিকেল কলেজ', district: 'সিলেট', type: 'মেডিকেল কলেজ', beds: 1000 },
+                { name: 'সুনামগঞ্জ সদর হাসপাতাল', district: 'সুনামগঞ্জ', type: 'সদর হাসপাতাল', beds: 200 },
+                { name: 'মৌলভীবাজার সদর হাসপাতাল', district: 'মৌলভীবাজার', type: 'সদর হাসপাতাল', beds: 250 },
+                { name: 'হবিগঞ্জ সদর হাসপাতাল', district: 'হবিগঞ্জ', type: 'সদর হাসপাতাল', beds: 200 }
+            ],
+            rajshahi: [
+                { name: 'রাজশাহী মেডিকেল কলেজ', district: 'রাজশাহী', type: 'মেডিকেল কলেজ', beds: 1200 },
+                { name: 'রংপুর মেডিকেল কলেজ', district: 'রংপুর', type: 'মেডিকেল কলেজ', beds: 800 },
+                { name: 'বগুড়া শহীদ জিয়াউর রহমান মেডিকেল কলেজ', district: 'বগুড়া', type: 'মেডিকেল কলেজ', beds: 600 },
+                { name: 'পাবনা সদর হাসপাতাল', district: 'পাবনা', type: 'সদর হাসপাতাল', beds: 400 }
+            ],
+            khulna: [
+                { name: 'খুলনা মেডিকেল কলেজ', district: 'খুলনা', type: 'মেডিকেল কলেজ', beds: 1000 },
+                { name: 'যশোর সদর হাসপাতাল', district: 'যশোর', type: 'সদর হাসপাতাল', beds: 500 },
+                { name: 'সাতক্ষীরা সদর হাসপাতাল', district: 'সাতক্ষীরা', type: 'সদর হাসপাতাল', beds: 250 },
+                { name: 'কুষ্টিয়া সদর হাসপাতাল', district: 'কুষ্টিয়া', type: 'সদর হাসপাতাল', beds: 300 }
+            ],
+            barishal: [
+                { name: 'শের-ই-বাংলা মেডিকেল কলেজ', district: 'বরিশাল', type: 'মেডিকেল কলেজ', beds: 750 },
+                { name: 'পটুয়াখালী সদর হাসপাতাল', district: 'পটুয়াখালী', type: 'সদর হাসপাতাল', beds: 200 },
+                { name: 'ভোলা সদর হাসপাতাল', district: 'ভোলা', type: 'সদর হাসপাতাল', beds: 150 },
+                { name: 'পিরোজপুর সদর হাসপাতাল', district: 'পিরোজপুর', type: 'সদর হাসপাতাল', beds: 150 }
+            ],
+            mymensingh: [
+                { name: 'ময়মনসিংহ মেডিকেল কলেজ', district: 'ময়মনসিংহ', type: 'মেডিকেল কলেজ', beds: 1000 },
+                { name: 'জামালপুর সদর হাসপাতাল', district: 'জামালপুর', type: 'সদর হাসপাতাল', beds: 300 },
+                { name: 'শেরপুর সদর হাসপাতাল', district: 'শেরপুর', type: 'সদর হাসপাতাল', beds: 200 },
+                { name: 'নেত্রকোনা সদর হাসপাতাল', district: 'নেত্রকোনা', type: 'সদর হাসপাতাল', beds: 250 }
+            ]
+        };
+
+        // Enhanced AI Analysis Keywords
+        const aiKeywords = {
+            'ডাক্তার': { category: 'ডাক্তারের উপস্থিতি', priority: 'উচ্চ', resolution: '১৮-২৪ ঘন্টা', sentiment: 'চিন্তিত' },
+            'doctor': { category: 'Doctor Availability', priority: 'High', resolution: '18-24 hours', sentiment: 'Concerned' },
+            'অপেক্ষা': { category: 'অপেক্ষার সময়', priority: 'মাঝারি', resolution: '২-৪ ঘন্টা', sentiment: 'বিরক্ত' },
+            'wait': { category: 'Wait Time', priority: 'Medium', resolution: '2-4 hours', sentiment: 'Frustrated' },
+            'পরিষ্কার': { category: 'পরিচ্ছন্নতা', priority: 'মাঝারি', resolution: '৬-১২ ঘন্টা', sentiment: 'হতাশ' },
+            'clean': { category: 'Cleanliness', priority: 'Medium', resolution: '6-12 hours', sentiment: 'Disappointed' },
+            'কর্মী': { category: 'কর্মীদের আচরণ', priority: 'মাঝারি', resolution: '১২-২৪ ঘন্টা', sentiment: 'বিরক্ত' },
+            'staff': { category: 'Staff Behavior', priority: 'Medium', resolution: '12-24 hours', sentiment: 'Upset' },
+            'ওষুধ': { category: 'ওষুধের ঘাটতি', priority: 'উচ্চ', resolution: '৪-৮ ঘন্টা', sentiment: 'উদ্বিগ্ন' },
+            'medicine': { category: 'Medicine Shortage', priority: 'High', resolution: '4-8 hours', sentiment: 'Worried' },
+            'জরুরি': { category: 'জরুরি সেবা', priority: 'জরুরি', resolution: '১-২ ঘন্টা', sentiment: 'জরুরি' },
+            'emergency': { category: 'Emergency Care', priority: 'Critical', resolution: '1-2 hours', sentiment: 'Urgent' }
+        };
+
+        function switchView(view) {
+            document.getElementById('mobile-view').classList.add('hidden');
+            document.getElementById('dashboard-view').classList.add('hidden');
+            document.getElementById('kiosk-view').classList.add('hidden');
+            
+            document.getElementById(view + '-view').classList.remove('hidden');
+            currentView = view;
+        }
+
+        // Mobile App Functions
+        function showMobileHome() {
+            document.getElementById('mobile-home').classList.remove('hidden');
+            document.getElementById('smart-complaint').classList.add('hidden');
+            document.getElementById('medical-directory').classList.add('hidden');
+            document.getElementById('emergency-services').classList.add('hidden');
+        }
+
+        function showSmartComplaint() {
+            document.getElementById('mobile-home').classList.add('hidden');
+            document.getElementById('smart-complaint').classList.remove('hidden');
+        }
+
+        function showVoiceComplaint() {
+            alert('ভয়েস অভিযোগ: এই বৈশিষ্ট্যটি উন্নত কণ্ঠস্বর চিনতে পারার প্রযুক্তি ব্যবহার করে আপনার কথ্য অভিযোগকে লেখায় রূপান্তরিত করবে, বাংলা ও ইংরেজি উভয় ভাষা সমর্থন করে।');
+        }
+
+        function showPredictiveTracking() {
+            alert('ভবিষ্যৎ ট্র্যাকিং: এআই আপনার অভিযোগের অগ্রগতি পূর্বাভাস দেবে এবং সমাধানের সম্ভাব্য সময় জানাবে। অনুরূপ ক্ষেত্রে ৯৪% নির্ভুলতার সাথে।');
+        }
+
+        function showMedicalDirectory() {
+            document.getElementById('mobile-home').classList.add('hidden');
+            document.getElementById('medical-directory').classList.remove('hidden');
+            populateHospitalList('all');
+        }
+
+        function showEmergencyServices() {
+            document.getElementById('mobile-home').classList.add('hidden');
+            document.getElementById('emergency-services').classList.remove('hidden');
+        }
+
+        function showMedicineTracker() {
+            alert('ওষুধ ট্র্যাকার: এই বৈশিষ্ট্যটি জাতীয় ওষুধ সরবরাহ ব্যবস্থার সাথে সংযুক্ত হয়ে রিয়েল-টাইমে ওষুধের স্টক এবং উপলব্ধতার তথ্য প্রদান করে।');
+        }
+
+        function showDoctorSchedule() {
+            alert('ডাক্তার সময়সূচী: বায়োমেট্রিক উপস্থিতি ব্যবস্থার সাথে সংযুক্ত হয়ে ডাক্তারদের রিয়েল-টাইম উপস্থিতি এবং পরবর্তী সময়সূচী দেখায়।');
+        }
+
+        function showHealthTips() {
+            alert('স্বাস্থ্য টিপস: এআই-চালিত ব্যক্তিগতকৃত স্বাস্থ্য পরামর্শ এবং প্রতিরোধমূলক যত্নের তথ্য প্রদান করে।');
+        }
+
+        // Multi-Channel Interaction Functions
+        function showSMSInterface() {
+            alert('SMS/USSD ইন্টারফেস:\n\n*৮০০# ডায়াল করুন অথবা নিম্নলিখিত ফরম্যাটে SMS পাঠান:\n\nHC [হাসপাতাল কোড] [অভিযোগের বিবরণ]\n\nউদাহরণ: HC DMC ডাক্তার অনুপস্থিত\n\nপাঠান: ১৬২৬৩ নম্বরে\n\nবাংলায়: স্বাস্থ্য [হাসপাতাল] [সমস্যা]');
+        }
+
+        function showIVRInterface() {
+            alert('IVR কল সিস্টেম:\n\n১৬২৬ৃ নম্বরে কল করুন\n\n📞 বাংলা: ১ চাপুন\n📞 English: Press 2\n\nমেনু অপশন:\n১. নতুন অভিযোগ দাখিল\n২. অভিযোগের অবস্থা জানুন\n৩. জরুরি সেবা\n৪. হাসপাতালের তথ্য\n৫. অপারেটরের সাথে কথা বলুন\n\nএআই ভয়েস রিকগনিশন সহ বহুভাষিক সহায়তা');
+        }
+
+        function showWebPortal() {
+            alert('ওয়েব পোর্টাল:\n\n🌐 health.gov.bd/complaints\n\nবৈশিষ্ট্য:\n• সম্পূর্ণ বাংলা ইন্টারফেস\n• এআই-চালিত ফর্ম ফিলিং\n• রিয়েল-টাইম ট্র্যাকিং\n• ডকুমেন্ট আপলোড\n• ভিডিও কল সাপোর্ট\n• মাল্টি-ডিভাইস সিঙ্ক\n\nমোবাইল-ফ্রেন্ডলি রেসপন্সিভ ডিজাইন');
+        }
+
+        function showKioskAccess() {
+            alert('হাসপাতাল কিয়স্ক:\n\n📍 সব সরকারি হাসপাতালে উপলব্ধ\n\nবৈশিষ্ট্য:\n• টাচস্ক্রিন ইন্টারফেস\n• ভয়েস গাইডেন্স\n• বাংলা/ইংরেজি সাপোর্ট\n• প্রিন্ট রিসিপ্ট\n• QR কোড ট্র্যাকিং\n• হেল্প ডেস্ক সংযোগ\n\nঅ্যাক্সেসিবিলিটি ফিচার সহ');
+        }
+
+        // Hospital Directory Functions
+        function populateHospitalList(division) {
+            const hospitalList = document.getElementById('hospital-list');
+            let hospitals = [];
+            
+            if (division === 'all') {
+                Object.values(hospitalData).forEach(divisionHospitals => {
+                    hospitals = hospitals.concat(divisionHospitals);
+                });
+            } else {
+                hospitals = hospitalData[division] || [];
+            }
+            
+            hospitalList.innerHTML = hospitals.map(hospital => `
+                <div class="glass-morphism rounded-2xl p-4 hover:scale-105 transition-all ios-button">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                            <h4 class="font-medium text-gray-800 bangla-font">${hospital.name}</h4>
+                            <p class="text-sm text-gray-600 bangla-font">${hospital.district} • ${hospital.type}</p>
+                            <p class="text-xs text-gray-500">শয্যা: ${hospital.beds}</p>
+                        </div>
+                        <button onclick="selectHospital('${hospital.name}')" class="bg-blue-500 text-white px-4 py-2 rounded-xl text-sm ios-button bangla-font">
+                            নির্বাচন
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterByDivision(division) {
+            // Update button styles
+            document.querySelectorAll('[onclick^="filterByDivision"]').forEach(btn => {
+                btn.classList.remove('bg-blue-500', 'text-white');
+                btn.classList.add('bg-gray-200', 'text-gray-700');
+            });
+            event.target.classList.remove('bg-gray-200', 'text-gray-700');
+            event.target.classList.add('bg-blue-500', 'text-white');
+            
+            populateHospitalList(division);
+        }
+
+        function searchHospitals() {
+            const searchTerm = document.getElementById('hospital-search').value.toLowerCase();
+            const hospitalList = document.getElementById('hospital-list');
+            
+            let allHospitals = [];
+            Object.values(hospitalData).forEach(divisionHospitals => {
+                allHospitals = allHospitals.concat(divisionHospitals);
+            });
+            
+            const filteredHospitals = allHospitals.filter(hospital => 
+                hospital.name.toLowerCase().includes(searchTerm) ||
+                hospital.district.toLowerCase().includes(searchTerm)
+            );
+            
+            hospitalList.innerHTML = filteredHospitals.map(hospital => `
+                <div class="glass-morphism rounded-2xl p-4 hover:scale-105 transition-all ios-button">
+                    <div class="flex items-center justify-between">
+                        <div class="flex-1">
+                            <h4 class="font-medium text-gray-800 bangla-font">${hospital.name}</h4>
+                            <p class="text-sm text-gray-600 bangla-font">${hospital.district} • ${hospital.type}</p>
+                            <p class="text-xs text-gray-500">শয্যা: ${hospital.beds}</p>
+                        </div>
+                        <button onclick="selectHospital('${hospital.name}')" class="bg-blue-500 text-white px-4 py-2 rounded-xl text-sm ios-button bangla-font">
+                            নির্বাচন
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function selectHospital(hospitalName) {
+            document.getElementById('smart-hospital').value = hospitalName;
+            showSmartComplaint();
+        }
+
+        // Emergency Functions
+        function callEmergency(number) {
+            alert(জরুরি কল: ${number} নম্বরে কল করা হচ্ছে...);
+        }
+
+        function requestAmbulance() {
+            alert('অ্যাম্বুলেন্স অনুরোধ: আপনার অবস্থান সনাক্ত করে নিকটতম অ্যাম্বুলেন্স খুঁজে পাওয়া হচ্ছে। আনুমানিক পৌঁছানোর সময়: ১৫ মিনিট।');
+        }
+
+        // AI Analysis Functions
+        function analyzeComplaint() {
+            const text = document.getElementById('smart-complaint-text').value.toLowerCase();
+            const feedback = document.getElementById('ai-feedback');
+            const predictions = document.getElementById('ai-predictions');
+            const validationStatus = document.getElementById('validation-status');
+            
+            if (text.length < 10) {
+                feedback.innerHTML = 'লিখতে থাকুন... আপনার অভিযোগ বিশ্লেষণের জন্য আরো বিস্তারিত প্রয়োজন।';
+                predictions.classList.add('hidden');
+                validationStatus.classList.add('hidden');
+                return;
+            }
+
+            clearTimeout(analysisTimeout);
+            feedback.innerHTML = '<div class="typing-dots bangla-font">🧠 এআই ট্রায়াজিং: বৈধতা যাচাই, শ্রেণীবিভাগ এবং অগ্রাধিকার নির্ধারণ...</div>';
+            
+            analysisTimeout = setTimeout(() => {
+                let analysis = analyzeText(text);
+                let validation = validateComplaint(text);
+                
+                // Update validation indicators
+                updateValidationStatus(validation);
+                validationStatus.classList.remove('hidden');
+                
+                feedback.innerHTML = `
+                    <div class="space-y-2">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-green-600">✓</span>
+                            <span class="bangla-font">এআই ট্রায়াজিং সম্পূর্ণ - ${validation.confidence}% আত্মবিশ্বাস</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-blue-600">🎯</span>
+                            <span class="bangla-font">${analysis.category} বিভাগে স্বয়ংক্রিয় রাউটিং</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-purple-600">📊</span>
+                            <span class="bangla-font">গুরুত্ব: ${analysis.priority} | সেন্টিমেন্ট: ${analysis.sentiment}</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-orange-600">🔍</span>
+                            <span class="bangla-font">ডুপ্লিকেট চেক: ${validation.isDuplicate ? 'সনাক্ত' : 'অনন্য'}</span>
+                        </div>
+                    </div>
+                `;
+                
+                document.getElementById('predicted-category').textContent = analysis.category;
+                document.getElementById('predicted-priority').textContent = analysis.priority;
+                document.getElementById('predicted-resolution').textContent = analysis.resolution;
+                document.getElementById('predicted-sentiment').textContent = analysis.sentiment;
+                predictions.classList.remove('hidden');
+                
+                // Auto-select hospital if mentioned
+                if (text.includes('ঢাকা মেডিকেল') || text.includes('dmch')) {
+                    document.getElementById('smart-hospital').value = 'ঢাকা মেডিকেল কলেজ হাসপাতাল';
+                }
+            }, 2000);
+        }
+
+        function validateComplaint(text) {
+            // AI-driven validation logic
+            let isValid = text.length > 20 && !text.includes('test') && !text.includes('fake');
+            let isDuplicate = Math.random() < 0.1; // 10% chance of duplicate
+            let spamScore = Math.floor(Math.random() * 10); // 0-9% spam score
+            let confidence = Math.floor(85 + Math.random() * 10); // 85-95% confidence
+            
+            return { isValid, isDuplicate, spamScore, confidence };
+        }
+
+        function updateValidationStatus(validation) {
+            const validityIndicator = document.getElementById('validity-indicator');
+            const duplicateIndicator = document.getElementById('duplicate-indicator');
+            const spamIndicator = document.getElementById('spam-indicator');
+            
+            // Update validity
+            if (validation.isValid) {
+                validityIndicator.innerHTML = '<div class="w-2 h-2 bg-green-500 rounded-full"></div><span class="text-green-700 bangla-font">বৈধ</span>';
+            } else {
+                validityIndicator.innerHTML = '<div class="w-2 h-2 bg-red-500 rounded-full"></div><span class="text-red-700 bangla-font">সন্দেহজনক</span>';
+            }
+            
+            // Update duplicate check
+            if (validation.isDuplicate) {
+                duplicateIndicator.innerHTML = '<div class="w-2 h-2 bg-orange-500 rounded-full"></div><span class="text-orange-700 bangla-font">ডুপ্লিকেট</span>';
+            } else {
+                duplicateIndicator.innerHTML = '<div class="w-2 h-2 bg-blue-500 rounded-full"></div><span class="text-blue-700 bangla-font">অনন্য</span>';
+            }
+            
+            // Update spam score
+            const spamColor = validation.spamScore < 5 ? 'green' : validation.spamScore < 8 ? 'yellow' : 'red';
+            spamIndicator.innerHTML = <div class="w-2 h-2 bg-${spamColor}-500 rounded-full"></div><span class="text-${spamColor}-700">${validation.spamScore}%</span>;
+        }
+
+        function analyzeText(text) {
+            for (let keyword in aiKeywords) {
+                if (text.includes(keyword)) {
+                    return aiKeywords[keyword];
+                }
+            }
+            return { category: 'সাধারণ', priority: 'মাঝারি', resolution: '২৪-৪৮ ঘন্টা', sentiment: 'নিরপেক্ষ' };
+        }
+
+        function aiPhotoAnalysis() {
+            alert('এআই ছবি বিশ্লেষণ: এই বৈশিষ্ট্যটি কম্পিউটার ভিশন ব্যবহার করে মেডিকেল ছবি, সুবিধার অবস্থা, বা নথিপত্র স্বয়ংক্রিয়ভাবে বিশ্লেষণ করে প্রাসঙ্গিক তথ্য বের করে আনে।');
+        }
+
+        function voiceToText() {
+            alert('কণ্ঠস্বর-থেকে-লেখা: এই বৈশিষ্ট্যটি উন্নত কণ্ঠস্বর চিনতে পারার প্রযুক্তি ব্যবহার করে আপনার কথ্য অভিযোগকে লেখায় রূপান্তরিত করে, বাংলা ও ইংরেজি সহ একাধিক ভাষা সমর্থন করে।');
+        }
+
+        function submitSmartComplaint() {
+            const text = document.getElementById('smart-complaint-text').value;
+            if (!text.trim()) {
+                alert('এআই বিশ্লেষণের জন্য অনুগ্রহ করে আপনার অভিযোগের বর্ণনা দিন।');
+                return;
+            }
+
+            const analysis = analyzeText(text.toLowerCase());
+            complaintCounter++;
+            
+            document.getElementById('result-category').textContent = analysis.category;
+            document.getElementById('result-priority').textContent = analysis.priority;
+            document.getElementById('result-resolution').textContent = analysis.resolution;
+            document.getElementById('result-confidence').textContent = '৯৪%';
+            document.getElementById('reference-id').textContent = HC-2024-${complaintCounter.toString().padStart(3, '0')};
+            document.getElementById('success-message').textContent = 'আপনার অভিযোগ এআই দ্বারা বিশ্লেষিত হয়ে স্বয়ংক্রিয়ভাবে উপযুক্ত বিভাগে পাঠানো হয়েছে।';
+            document.getElementById('success-modal').classList.remove('hidden');
+        }
+
+        // Kiosk Functions
+        function showKioskHome() {
+            document.getElementById('kiosk-home').classList.remove('hidden');
+            // Hide other kiosk sections when implemented
+        }
+
+        function showKioskSmartComplaint() {
+            alert('কিয়স্ক স্মার্ট অভিযোগ: বড় স্ক্রিনে অপ্টিমাইজড ইন্টারফেস যা টাচ এবং ভয়েস উভয় ইনপুট সমর্থন করে।');
+        }
+
+        function showKioskVoiceInterface() {
+            alert('কিয়স্ক ভয়েস ইন্টারফেস: উন্নত মাইক্রোফোন সিস্টেম সহ বহুভাষিক কণ্ঠস্বর চিনতে পারার ক্ষমতা।');
+        }
+
+        function showKioskMedicalDirectory() {
+            alert('কিয়স্ক মেডিকেল ডিরেক্টরি: ইন্টারঅ্যাক্টিভ মানচিত্র সহ সব জেলার হাসপাতালের সম্পূর্ণ তথ্য।');
+        }
+
+        function showKioskEmergencyServices() {
+            alert('কিয়স্ক জরুরি সেবা: ওয়ান-ক্লিক জরুরি কল এবং তাৎক্ষণিক সহায়তার ব্যবস্থা।');
+        }
+
+        function closeModal() {
+            document.getElementById('success-modal').classList.add('hidden');
+            
+            if (currentView === 'mobile') {
+                showMobileHome();
+                document.getElementById('smart-complaint-text').value = '';
+            }
+        }
+
+        // Live Dashboard Updates
+        function updateLiveDashboard() {
+            // Simulate real-time data updates
+            const complaints = document.getElementById('live-complaints');
+            const resolution = document.getElementById('live-resolution');
+            const doctors = document.getElementById('live-doctors');
+            const medicine = document.getElementById('live-medicine');
+            const quality = document.getElementById('live-quality');
+            
+            if (complaints) {
+                // Simulate fluctuating numbers
+                const baseComplaints = 1247;
+                const newCount = baseComplaints + Math.floor(Math.random() * 10) - 5;
+                complaints.textContent = newCount.toLocaleString('bn-BD');
+            }
+            
+            if (resolution) {
+                const baseResolution = 87.3;
+                const newResolution = (baseResolution + (Math.random() * 2 - 1)).toFixed(1);
+                resolution.textContent = newResolution + '%';
+            }
+            
+            if (doctors) {
+                const baseDoctors = 92.1;
+                const newDoctors = (baseDoctors + (Math.random() * 1 - 0.5)).toFixed(1);
+                doctors.textContent = newDoctors + '%';
+            }
+            
+            if (medicine) {
+                const baseMedicine = 78.5;
+                const newMedicine = (baseMedicine + (Math.random() * 3 - 1.5)).toFixed(1);
+                medicine.textContent = newMedicine + '%';
+            }
+            
+            if (quality) {
+                const baseQuality = 7.4;
+                const newQuality = (baseQuality + (Math.random() * 0.4 - 0.2)).toFixed(1);
+                quality.textContent = newQuality + '/১০';
+            }
+            
+            // Update activity feed
+            updateActivityFeed();
+        }
+
+        function updateActivityFeed() {
+            const activityFeed = document.getElementById('activity-feed');
+            if (!activityFeed) return;
+            
+            const activities = [
+                { type: 'complaint', hospital: 'ঢাকা মেডিকেল', issue: 'ডাক্তারের উপস্থিতি', priority: 'উচ্চ', time: '২ মিনিট আগে', color: 'blue' },
+                { type: 'resolution', hospital: 'চট্টগ্রাম মেডিকেল', issue: 'পরিচ্ছন্নতা সমস্যা', priority: 'সমাধান', time: '৫ মিনিট আগে', color: 'green' },
+                { type: 'ai-detection', hospital: 'সিলেট', issue: 'ডুপ্লিকেট অভিযোগ ব্লক', priority: 'স্প্যাম', time: '৮ মিনিট আগে', color: 'purple' },
+                { type: 'escalation', hospital: 'রাজশাহী মেডিকেল', issue: 'ওষুধের ঘাটতি', priority: 'জরুরি', time: '১২ মিনিট আগে', color: 'red' },
+                { type: 'improvement', hospital: 'খুলনা মেডিকেল', issue: 'সেবার মান উন্নতি', priority: 'ইতিবাচক', time: '১৫ মিনিট আগে', color: 'green' }
+            ];
+            
+            // Randomly select and update activities
+            const randomActivity = activities[Math.floor(Math.random() * activities.length)];
+            const timeVariation = Math.floor(Math.random() * 5) + 1;
+            randomActivity.time = ${timeVariation} মিনিট আগে;
+            
+            // Add new activity to the top
+            const newActivityHTML = `
+                <div class="flex items-center space-x-4 p-3 bg-${randomActivity.color}-50 rounded-xl">
+                    <div class="w-2 h-2 bg-${randomActivity.color}-500 rounded-full"></div>
+                    <div class="flex-1">
+                        <span class="text-sm text-gray-800 bangla-font">${randomActivity.type === 'complaint' ? 'নতুন অভিযোগ' : randomActivity.type === 'resolution' ? 'সমাধান' : randomActivity.type === 'ai-detection' ? 'এআই সনাক্তকরণ' : randomActivity.type === 'escalation' ? 'এসকেলেশন' : 'উন্নতি'}: ${randomActivity.hospital} - ${randomActivity.issue}</span>
+                        <div class="text-xs text-gray-500">${randomActivity.time}</div>
+                    </div>
+                    <span class="px-2 py-1 bg-${randomActivity.color}-100 text-${randomActivity.color}-800 text-xs rounded-full bangla-font">${randomActivity.priority}</span>
+                </div>
+            `;
+            
+            // Update the feed (keep only latest 5 items)
+            const currentItems = activityFeed.children;
+            if (currentItems.length >= 5) {
+                activityFeed.removeChild(currentItems[currentItems.length - 1]);
+            }
+            activityFeed.insertAdjacentHTML('afterbegin', newActivityHTML);
+        }
+
+        // Initialize with mobile view and populate hospital list
+        switchView('mobile');
+        
+        // Initialize hospital list when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('hospital-list')) {
+                populateHospitalList('all');
+            }
+            
+            // Start live dashboard updates
+            setInterval(updateLiveDashboard, 15000); // Update every 15 seconds
+            
+            // Initial update
+            setTimeout(updateLiveDashboard, 2000);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97aed092917525b1',t:'MTc1NzE3MDYwNC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
