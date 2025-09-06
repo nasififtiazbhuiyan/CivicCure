@@ -1,0 +1,1425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Healthcare Complaint Management System - Presentation</title>
+    <script src="https://cdn.tailwindcss.com
+"></script>
+    <style>
+        .slide { min-height: 100vh; display: none; }
+        .slide.active { display: flex; }
+        .slide-content { animation: slideIn 0.6s ease-out; }
+        @keyframes slideIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        .gradient-bg { background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%); }
+        .glass-effect { backdrop-filter: blur(20px); background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .pulse-glow { animation: pulseGlow 2s infinite; }
+        @keyframes pulseGlow { 0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); } 50% { box-shadow: 0 0 30px rgba(59, 130, 246, 0.6); } }
+        .bangla-font { font-family: 'SolaimanLipi', 'Kalpurush', 'Nikosh', sans-serif; }
+        .slide-number { position: absolute; bottom: 20px; right: 20px; background: rgba(0,0,0,0.5); color: white; padding: 8px 16px; rounded: 20px; }
+        .progress-bar { height: 4px; background: linear-gradient(90deg, #667eea, #764ba2); transition: width 0.3s ease; }
+    </style>
+</head>
+<body class="bg-gray-900 text-white overflow-hidden">
+    <!-- Progress Bar -->
+    <div class="fixed top-0 left-0 w-full z-50">
+        <div id="progress-bar" class="progress-bar" style="width: 0%"></div>
+    </div>
+
+    <!-- Navigation Controls -->
+    <div class="fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex space-x-4">
+        <button onclick="previousSlide()" class="bg-white/20 backdrop-blur-lg text-white px-6 py-3 rounded-full hover:bg-white/30 transition-all">
+            ← Previous
+        </button>
+        <span id="slide-counter" class="bg-white/20 backdrop-blur-lg text-white px-6 py-3 rounded-full">1 / 15</span>
+        <button onclick="nextSlide()" class="bg-white/20 backdrop-blur-lg text-white px-6 py-3 rounded-full hover:bg-white/30 transition-all">
+            Next →
+        </button>
+    </div>
+
+    <!-- Slide 1: Title Slide -->
+    <div class="slide active gradient-bg flex-col justify-center items-center text-center p-8">
+        <div class="slide-content max-w-6xl">
+            <div class="mb-8">
+                <div class="w-32 h-32 mx-auto gradient-bg rounded-full flex items-center justify-center mb-8 pulse-glow">
+                    <span class="text-6xl">🏥</span>
+                </div>
+            </div>
+            <h1 class="text-6xl font-bold mb-6 bangla-font">স্বাস্থ্যসেবা অভিযোগ ব্যবস্থাপনা</h1>
+            <h2 class="text-4xl font-semibold mb-8">AI-Powered Healthcare Complaint Management System</h2>
+            <div class="text-xl mb-12 space-y-2">
+                <p class="bangla-font">🤖 কৃত্রিম বুদ্ধিমত্তা চালিত • 📱 বহু-চ্যানেল ইন্টারঅ্যাকশন • 🏥 সমন্বিত হাসপাতাল ডেটা</p>
+                <p>Advanced AI Triaging • Real-time Dashboard • Comprehensive Accountability</p>
+            </div>
+            <div class="flex justify-center space-x-8 text-lg">
+                <div class="glass-effect rounded-2xl px-6 py-4">
+                    <div class="text-3xl mb-2">🇧🇩</div>
+                    <div class="bangla-font">৬৪টি জেলা</div>
+                    <div>64 Districts</div>
+                </div>
+                <div class="glass-effect rounded-2xl px-6 py-4">
+                    <div class="text-3xl mb-2">🏥</div>
+                    <div class="bangla-font">৮৫০+ হাসপাতাল</div>
+                    <div>850+ Hospitals</div>
+                </div>
+                <div class="glass-effect rounded-2xl px-6 py-4">
+                    <div class="text-3xl mb-2">🤖</div>
+                    <div class="bangla-font">এআই চালিত</div>
+                    <div>AI Powered</div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">1 / 15</div>
+    </div>
+
+    <!-- Slide 2: Problem Statement -->
+    <div class="slide bg-gradient-to-br from-red-900 to-red-700 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl text-center">
+            <h1 class="text-5xl font-bold mb-12">🚨 Current Healthcare Challenges</h1>
+            <div class="grid grid-cols-2 gap-8 mb-12">
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="text-6xl mb-6">📋</div>
+                    <h3 class="text-2xl font-bold mb-4 bangla-font">অভিযোগ ব্যবস্থাপনার সমস্যা</h3>
+                    <ul class="text-left space-y-3">
+                        <li class="bangla-font">• ম্যানুয়াল প্রক্রিয়া - ধীর ও অদক্ষ</li>
+                        <li class="bangla-font">• একাধিক চ্যানেলের অভাব</li>
+                        <li class="bangla-font">• রিয়েল-টাইম ট্র্যাকিং নেই</li>
+                        <li class="bangla-font">• জবাবদিহিতার অভাব</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="text-6xl mb-6">⏰</div>
+                    <h3 class="text-2xl font-bold mb-4 bangla-font">সময় ও দক্ষতার সমস্যা</h3>
+                    <ul class="text-left space-y-3">
+                        <li class="bangla-font">• গড় সমাধানের সময়: ৭-১০ দিন</li>
+                        <li class="bangla-font">• ডুপ্লিকেট অভিযোগ সনাক্তকরণ নেই</li>
+                        <li class="bangla-font">• স্প্যাম ফিল্টারিং অনুপস্থিত</li>
+                        <li class="bangla-font">• ভবিষ্যদ্বাণীমূলক বিশ্লেষণ নেই</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="glass-effect rounded-3xl p-8">
+                <h3 class="text-3xl font-bold mb-6 text-yellow-300">📊 Current Statistics</h3>
+                <div class="grid grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-red-300">65%</div>
+                        <div class="bangla-font">অসন্তুষ্ট রোগী</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-red-300">7-10</div>
+                        <div class="bangla-font">দিন সমাধানের সময়</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-red-300">40%</div>
+                        <div class="bangla-font">অমীমাংসিত অভিযোগ</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-red-300">25%</div>
+                        <div class="bangla-font">ডুপ্লিকেট রিপোর্ট</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">2 / 15</div>
+    </div>
+
+    <!-- Slide 3: Solution Overview -->
+    <div class="slide bg-gradient-to-br from-blue-900 to-purple-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl text-center">
+            <h1 class="text-5xl font-bold mb-12">🤖 Our AI-Powered Solution</h1>
+            <div class="grid grid-cols-2 gap-8 mb-12">
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="text-6xl mb-6">🧠</div>
+                    <h3 class="text-2xl font-bold mb-4 bangla-font">কৃত্রিম বুদ্ধিমত্তা ইন্টিগ্রেশন</h3>
+                    <ul class="text-left space-y-3">
+                        <li class="bangla-font">• স্বয়ংক্রিয় ট্রায়াজিং ও শ্রেণীবিভাগ</li>
+                        <li class="bangla-font">• রিয়েল-টাইম বৈধতা যাচাই</li>
+                        <li class="bangla-font">• ভবিষ্যদ্বাণীমূলক বিশ্লেষণ</li>
+                        <li class="bangla-font">• বহুভাষিক NLP সাপোর্ট</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="text-6xl mb-6">📱</div>
+                    <h3 class="text-2xl font-bold mb-4 bangla-font">বহু-চ্যানেল অ্যাক্সেস</h3>
+                    <ul class="text-left space-y-3">
+                        <li class="bangla-font">• মোবাইল অ্যাপ (iOS/Android)</li>
+                        <li class="bangla-font">• SMS/USSD (*৮০০#)</li>
+                        <li class="bangla-font">• IVR ফোন লাইন (১৬২৬৩)</li>
+                        <li class="bangla-font">• হাসপাতাল কিয়স্ক</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="glass-effect rounded-3xl p-8">
+                <h3 class="text-3xl font-bold mb-6 text-green-300">🎯 Expected Improvements</h3>
+                <div class="grid grid-cols-4 gap-6">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-300">87%</div>
+                        <div class="bangla-font">সমাধানের হার</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-300">18-24</div>
+                        <div class="bangla-font">ঘন্টা গড় সময়</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-300">94%</div>
+                        <div class="bangla-font">এআই নির্ভুলতা</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-green-300">95%</div>
+                        <div class="bangla-font">রোগী সন্তুষ্টি</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">3 / 15</div>
+    </div>
+
+    <!-- Slide 4: Multi-Channel Interaction -->
+    <div class="slide bg-gradient-to-br from-green-900 to-teal-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center">📡 Multi-Channel Interaction System</h1>
+            <div class="grid grid-cols-2 gap-8">
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">📱</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">SMS/USSD ইন্টারফেস</h3>
+                            <p class="text-gray-300">Dial *800# or SMS to 16263</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• *৮০০# ডায়াল করুন তাৎক্ষণিক অ্যাক্সেসের জন্য</li>
+                        <li class="bangla-font">• SMS ফরম্যাট: HC [হাসপাতাল] [সমস্যা]</li>
+                        <li class="bangla-font">• বাংলা ও ইংরেজি উভয় ভাষায় সাপোর্ট</li>
+                        <li class="bangla-font">• অফলাইন এলাকার জন্য আদর্শ</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">☎️</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">IVR ফোন সিস্টেম</h3>
+                            <p class="text-gray-300">Call 16263 for voice support</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• ২৪/৭ স্বয়ংক্রিয় ভয়েস সাপোর্ট</li>
+                        <li class="bangla-font">• বহুভাষিক মেনু সিস্টেম</li>
+                        <li class="bangla-font">• এআই ভয়েস রিকগনিশন</li>
+                        <li class="bangla-font">• জরুরি কেস তাৎক্ষণিক রাউটিং</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">🌐</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">ওয়েব পোর্টাল</h3>
+                            <p class="text-gray-300">health.gov.bd/complaints
+</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• সম্পূর্ণ বাংলা ইন্টারফেস</li>
+                        <li class="bangla-font">• এআই-চালিত ফর্ম ফিলিং</li>
+                        <li class="bangla-font">• রিয়েল-টাইম ট্র্যাকিং ড্যাশবোর্ড</li>
+                        <li class="bangla-font">• মোবাইল-রেসপন্সিভ ডিজাইন</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">🖥️</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">হাসপাতাল কিয়স্ক</h3>
+                            <p class="text-gray-300">On-site touchscreen terminals</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• সব সরকারি হাসপাতালে স্থাপিত</li>
+                        <li class="bangla-font">• টাচস্ক্রিন ও ভয়েস গাইডেন্স</li>
+                        <li class="bangla-font">• প্রিন্ট রিসিপ্ট ও QR ট্র্যাকিং</li>
+                        <li class="bangla-font">• অ্যাক্সেসিবিলিটি ফিচার</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">4 / 15</div>
+    </div>
+
+    <!-- Slide 5: AI-Driven Triaging -->
+    <div class="slide bg-gradient-to-br from-purple-900 to-pink-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center">🧠 AI-Driven Triaging System</h1>
+            <div class="grid grid-cols-3 gap-6 mb-8">
+                <div class="glass-effect rounded-3xl p-6 text-center">
+                    <div class="text-5xl mb-4">🔍</div>
+                    <h3 class="text-xl font-bold mb-3 bangla-font">বৈধতা যাচাই</h3>
+                    <p class="text-sm bangla-font">ML অ্যালগরিদম ব্যবহার করে অভিযোগের সত্যতা যাচাই</p>
+                </div>
+                <div class="glass-effect rounded-3xl p-6 text-center">
+                    <div class="text-5xl mb-4">📊</div>
+                    <h3 class="text-xl font-bold mb-3 bangla-font">শ্রেণীবিভাগ</h3>
+                    <p class="text-sm bangla-font">NLP দিয়ে স্বয়ংক্রিয় ক্যাটাগরি নির্ধারণ</p>
+                </div>
+                <div class="glass-effect rounded-3xl p-6 text-center">
+                    <div class="text-5xl mb-4">⚡</div>
+                    <h3 class="text-xl font-bold mb-3 bangla-font">অগ্রাধিকার</h3>
+                    <p class="text-sm bangla-font">গুরুত্ব অনুযায়ী র‍্যাঙ্কিং ও রাউটিং</p>
+                </div>
+            </div>
+            
+            <div class="glass-effect rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 text-center bangla-font">🤖 এআই প্রক্রিয়াকরণ পাইপলাইন</h3>
+                <div class="flex items-center justify-between">
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mb-3 mx-auto">
+                            <span class="text-2xl">📝</span>
+                        </div>
+                        <p class="text-sm bangla-font">অভিযোগ গ্রহণ</p>
+                    </div>
+                    <div class="text-3xl text-gray-400">→</div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-purple-500 rounded-full flex items-center justify-center mb-3 mx-auto">
+                            <span class="text-2xl">🧠</span>
+                        </div>
+                        <p class="text-sm bangla-font">NLP বিশ্লেষণ</p>
+                    </div>
+                    <div class="text-3xl text-gray-400">→</div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mb-3 mx-auto">
+                            <span class="text-2xl">🎯</span>
+                        </div>
+                        <p class="text-sm bangla-font">শ্রেণীবিভাগ</p>
+                    </div>
+                    <div class="text-3xl text-gray-400">→</div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-orange-500 rounded-full flex items-center justify-center mb-3 mx-auto">
+                            <span class="text-2xl">⚡</span>
+                        </div>
+                        <p class="text-sm bangla-font">অগ্রাধিকার</p>
+                    </div>
+                    <div class="text-3xl text-gray-400">→</div>
+                    <div class="text-center">
+                        <div class="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mb-3 mx-auto">
+                            <span class="text-2xl">🚀</span>
+                        </div>
+                        <p class="text-sm bangla-font">স্বয়ংক্রিয় রাউটিং</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8">
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">🔍 স্প্যাম ও ডুপ্লিকেট সনাক্তকরণ</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• ৯৮% নির্ভুলতায় মিথ্যা রিপোর্ট সনাক্তকরণ</li>
+                        <li class="bangla-font">• ডুপ্লিকেট অভিযোগ স্বয়ংক্রিয় মার্জিং</li>
+                        <li class="bangla-font">• স্প্যাম স্কোর ও কনফিডেন্স লেভেল</li>
+                        <li class="bangla-font">• রিয়েল-টাইম ভেরিফিকেশন</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">📈 ভবিষ্যদ্বাণীমূলক বিশ্লেষণ</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• সমাধানের সময় পূর্বাভাস</li>
+                        <li class="bangla-font">• এসকেলেশন সম্ভাবনা গণনা</li>
+                        <li class="bangla-font">• রোগীর সন্তুষ্টি প্রেডিকশন</li>
+                        <li class="bangla-font">• ট্রেন্ড অ্যানালাইসিস ও প্যাটার্ন</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">5 / 15</div>
+    </div>
+
+    <!-- Slide 6: Live Dashboard -->
+    <div class="slide bg-gradient-to-br from-indigo-900 to-blue-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center">📊 Real-Time Live Dashboard</h1>
+            
+            <!-- Key Metrics -->
+            <div class="grid grid-cols-5 gap-4 mb-8">
+                <div class="glass-effect rounded-2xl p-4 text-center">
+                    <div class="text-3xl mb-2">📋</div>
+                    <div class="text-2xl font-bold text-red-300">১,২৪ে</div>
+                    <div class="text-sm bangla-font">মোট অভিযোগ</div>
+                </div>
+                <div class="glass-effect rounded-2xl p-4 text-center">
+                    <div class="text-3xl mb-2">✅</div>
+                    <div class="text-2xl font-bold text-blue-300">৮৭.৩%</div>
+                    <div class="text-sm bangla-font">সমাধানের হার</div>
+                </div>
+                <div class="glass-effect rounded-2xl p-4 text-center">
+                    <div class="text-3xl mb-2">👨‍⚕️</div>
+                    <div class="text-2xl font-bold text-green-300">৯২.১%</div>
+                    <div class="text-sm bangla-font">ডাক্তার উপস্থিতি</div>
+                </div>
+                <div class="glass-effect rounded-2xl p-4 text-center">
+                    <div class="text-3xl mb-2">💊</div>
+                    <div class="text-2xl font-bold text-purple-300">৭৮.৫%</div>
+                    <div class="text-sm bangla-font">ওষুধ স্টক</div>
+                </div>
+                <div class="glass-effect rounded-2xl p-4 text-center">
+                    <div class="text-3xl mb-2">⭐</div>
+                    <div class="text-2xl font-bold text-yellow-300">৭.৪/১০</div>
+                    <div class="text-sm bangla-font">সেবার মান</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8">
+                <div class="glass-effect rounded-3xl p-6">
+                    <h3 class="text-xl font-bold mb-4 bangla-font">📡 রিয়েল-টাইম কার্যক্রম</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3 p-3 bg-blue-500/20 rounded-xl">
+                            <div class="w-2 h-2 bg-blue-400 rounded-full"></div>
+                            <div class="flex-1">
+                                <div class="text-sm bangla-font">নতুন অভিযোগ: ঢাকা মেডিকেল - ডাক্তারের উপস্থিতি</div>
+                                <div class="text-xs text-gray-400">২ মিনিট আগে</div>
+                            </div>
+                            <span class="px-2 py-1 bg-orange-500/30 text-orange-300 text-xs rounded-full bangla-font">উচ্চ</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-green-500/20 rounded-xl">
+                            <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                            <div class="flex-1">
+                                <div class="text-sm bangla-font">সমাধান: চট্টগ্রাম মেডিকেল - পরিচ্ছন্নতা</div>
+                                <div class="text-xs text-gray-400">৫ মিনিট আগে</div>
+                            </div>
+                            <span class="px-2 py-1 bg-green-500/30 text-green-300 text-xs rounded-full bangla-font">সমাধান</span>
+                        </div>
+                        <div class="flex items-center space-x-3 p-3 bg-purple-500/20 rounded-xl">
+                            <div class="w-2 h-2 bg-purple-400 rounded-full"></div>
+                            <div class="flex-1">
+                                <div class="text-sm bangla-font">এআই সনাক্তকরণ: সিলেট - ডুপ্লিকেট ব্লক</div>
+                                <div class="text-xs text-gray-400">৮ মিনিট আগে</div>
+                            </div>
+                            <span class="px-2 py-1 bg-purple-500/30 text-purple-300 text-xs rounded-full bangla-font">স্প্যাম</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="glass-effect rounded-3xl p-6">
+                    <h3 class="text-xl font-bold mb-4 bangla-font">📈 জেলাভিত্তিক কর্মক্ষমতা</h3>
+                    <div class="space-y-4">
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm bangla-font">ঢাকা বিভাগ</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-24 bg-gray-600 rounded-full h-2">
+                                    <div class="bg-blue-400 h-2 rounded-full" style="width: 95%"></div>
+                                </div>
+                                <span class="text-sm">৯৫%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm bangla-font">চট্টগ্রাম বিভাগ</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-24 bg-gray-600 rounded-full h-2">
+                                    <div class="bg-green-400 h-2 rounded-full" style="width: 92%"></div>
+                                </div>
+                                <span class="text-sm">৯২%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm bangla-font">সিলেট বিভাগ</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-24 bg-gray-600 rounded-full h-2">
+                                    <div class="bg-purple-400 h-2 rounded-full" style="width: 89%"></div>
+                                </div>
+                                <span class="text-sm">৮৯%</span>
+                            </div>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm bangla-font">রাজশাহী বিভাগ</span>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-24 bg-gray-600 rounded-full h-2">
+                                    <div class="bg-orange-400 h-2 rounded-full" style="width: 87%"></div>
+                                </div>
+                                <span class="text-sm">৮৭%</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">6 / 15</div>
+    </div>
+
+    <!-- Slide 7: Integrated Hospital Data -->
+    <div class="slide bg-gradient-to-br from-teal-900 to-green-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center">🔗 Integrated Hospital Data Systems</h1>
+            
+            <div class="grid grid-cols-3 gap-8 mb-8">
+                <div class="glass-effect rounded-3xl p-6 text-center">
+                    <div class="text-5xl mb-4">👤</div>
+                    <h3 class="text-xl font-bold mb-3 bangla-font">HRIS বায়োমেট্রিক</h3>
+                    <p class="text-sm bangla-font">ডাক্তারদের রিয়েল-টাইম উপস্থিতি ট্র্যাকিং</p>
+                    <div class="mt-4 flex items-center justify-center space-x-2">
+                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span class="text-xs text-green-300 bangla-font">সংযুক্ত</span>
+                    </div>
+                </div>
+                <div class="glass-effect rounded-3xl p-6 text-center">
+                    <div class="text-5xl mb-4">💊</div>
+                    <h3 class="text-xl font-bold mb-3 bangla-font">eLMIS/SCMP</h3>
+                    <p class="text-sm bangla-font">সাপ্লাই চেইন ও ওষুধ ইনভেন্টরি</p>
+                    <div class="mt-4 flex items-center justify-center space-x-2">
+                        <div class="w-2 h-2 bg-green-400 rounded-full"></div>
+                        <span class="text-xs text-green-300 bangla-font">সক্রিয়</span>
+                    </div>
+                </div>
+                <div class="glass-effect rounded-3xl p-6 text-center">
+                    <div class="text-5xl mb-4">🏥</div>
+                    <h3 class="text-xl font-bold mb-3 bangla-font">MOHFW API</h3>
+                    <p class="text-sm bangla-font">স্বাস্থ্য মন্ত্রণালয়ের কেন্দ্রীয় ডেটাবেস</p>
+                    <div class="mt-4 flex items-center justify-center space-x-2">
+                        <div class="w-2 h-2 bg-green-400 rounded-full pulse-glow"></div>
+                        <span class="text-xs text-green-300 bangla-font">লাইভ</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 text-center bangla-font">🌐 ডেটা ইন্টিগ্রেশন আর্কিটেকচার</h3>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-blue-500/20 rounded-2xl p-6">
+                        <h4 class="font-bold mb-3 bangla-font">HRIS সিস্টেম</h4>
+                        <ul class="text-sm space-y-2">
+                            <li class="bangla-font">• বায়োমেট্রিক উপস্থিতি</li>
+                            <li class="bangla-font">• ডাক্তার শিফট ট্র্যাকিং</li>
+                            <li class="bangla-font">• কর্মক্ষমতা মেট্রিক্স</li>
+                            <li class="bangla-font">• রিয়েল-টাইম আপডেট</li>
+                        </ul>
+                    </div>
+                    <div class="bg-purple-500/20 rounded-2xl p-6">
+                        <h4 class="font-bold mb-3 bangla-font">eLMIS/SCMP</h4>
+                        <ul class="text-sm space-y-2">
+                            <li class="bangla-font">• ওষুধ ইনভেন্টরি</li>
+                            <li class="bangla-font">• সাপ্লাই চেইন ট্র্যাকিং</li>
+                            <li class="bangla-font">• স্টক লেভেল মনিটরিং</li>
+                            <li class="bangla-font">• অটো রিঅর্ডার সিস্টেম</li>
+                        </ul>
+                    </div>
+                    <div class="bg-green-500/20 rounded-2xl p-6">
+                        <h4 class="font-bold mb-3 bangla-font">MOHFW ডেটাবেস</h4>
+                        <ul class="text-sm space-y-2">
+                            <li class="bangla-font">• ৬৪টি জেলার তথ্য</li>
+                            <li class="bangla-font">• ৮৫০+ হাসপাতাল</li>
+                            <li class="bangla-font">• সেবা ক্যাটালগ</li>
+                            <li class="bangla-font">• কর্মী ডিরেক্টরি</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8">
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">📊 রিয়েল-টাইম ডেটা সিঙ্ক</h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">HRIS আপডেট ফ্রিকোয়েন্সি:</span>
+                            <span class="text-green-300 font-bold">২ মিনিট</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">eLMIS সিঙ্ক ইন্টারভাল:</span>
+                            <span class="text-blue-300 font-bold">৫ মিনিট</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">API আপটাইম:</span>
+                            <span class="text-purple-300 font-bold">৯৯.৮%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">ডেটা অ্যাকুরেসি:</span>
+                            <span class="text-yellow-300 font-bold">৯৮.৫%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">🔒 ডেটা সিকিউরিটি</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• এন্ড-টু-এন্ড এনক্রিপশন</li>
+                        <li class="bangla-font">• API কী অথেনটিকেশন</li>
+                        <li class="bangla-font">• অডিট লগিং সিস্টেম</li>
+                        <li class="bangla-font">• GDPR কমপ্লায়েন্স</li>
+                        <li class="bangla-font">• রোল-বেসড অ্যাক্সেস কন্ট্রোল</li>
+                        <li class="bangla-font">• ডেটা ব্যাকআপ ও রিকভারি</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">7 / 15</div>
+    </div>
+
+    <!-- Slide 8: Accountability Measures -->
+    <div class="slide bg-gradient-to-br from-orange-900 to-red-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center">⚖️ Comprehensive Accountability Measures</h1>
+            
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">📋</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">স্বয়ংক্রিয় অডিট ট্রেইল</h3>
+                            <p class="text-gray-300">Complete Activity Logging</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bangla-font">• সব কার্যক্রমের সম্পূর্ণ লগিং ও ট্র্যাকিং</li>
+                        <li class="bangla-font">• টাইমস্ট্যাম্প সহ ইউজার অ্যাক্টিভিটি রেকর্ড</li>
+                        <li class="bangla-font">• সিস্টেম চেঞ্জ হিস্টরি মেইনটেইন</li>
+                        <li class="bangla-font">• ডেটা ইন্টিগ্রিটি ভেরিফিকেশন</li>
+                        <li class="bangla-font">• কমপ্লায়েন্স রিপোর্টিং</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">🚨</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">এসকেলেশন নিয়ম</h3>
+                            <p class="text-gray-300">Automated Escalation Rules</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bangla-font">• ২৪ ঘন্টার বেশি অমীমাংসিত ক্ষেত্রে স্বয়ংক্রিয় এসকেলেশন</li>
+                        <li class="bangla-font">• ঊর্ধ্বতন কর্তৃপক্ষে তাৎক্ষণিক নোটিফিকেশন</li>
+                        <li class="bangla-font">• জরুরি কেসে ১ ঘন্টার মধ্যে এসকেলেশন</li>
+                        <li class="bangla-font">• মাল্টি-লেভেল এসকেলেশন চেইন</li>
+                        <li class="bangla-font">• SMS/ইমেইল অ্যালার্ট সিস্টেম</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 text-center bangla-font">📈 কর্মক্ষমতা র‍্যাঙ্কিং ও স্বীকৃতি</h3>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-green-500/20 rounded-2xl p-6 text-center">
+                        <div class="text-4xl mb-3">🏆</div>
+                        <h4 class="font-bold mb-3 bangla-font">সেরা পারফরমার</h4>
+                        <p class="text-sm bangla-font">সাপ্তাহিক সেরা হাসপাতাল প্রকাশ্য স্বীকৃতি</p>
+                        <div class="mt-4 text-2xl font-bold text-green-300">৯৫%+</div>
+                        <div class="text-xs bangla-font">সমাধানের হার</div>
+                    </div>
+                    <div class="bg-yellow-500/20 rounded-2xl p-6 text-center">
+                        <div class="text-4xl mb-3">⚠️</div>
+                        <h4 class="font-bold mb-3 bangla-font">উন্নতি প্রয়োজন</h4>
+                        <p class="text-sm bangla-font">মাঝারি পারফরমেন্স - সাপোর্ট প্রদান</p>
+                        <div class="mt-4 text-2xl font-bold text-yellow-300">৭০-৮৫%</div>
+                        <div class="text-xs bangla-font">সমাধানের হার</div>
+                    </div>
+                    <div class="bg-red-500/20 rounded-2xl p-6 text-center">
+                        <div class="text-4xl mb-3">🔴</div>
+                        <h4 class="font-bold mb-3 bangla-font">সংশোধনী ব্যবস্থা</h4>
+                        <p class="text-sm bangla-font">দীর্ঘমেয়াদী ব্যর্থতা - তাৎক্ষণিক হস্তক্ষেপ</p>
+                        <div class="mt-4 text-2xl font-bold text-red-300">&lt;৭০%</div>
+                        <div class="text-xs bangla-font">সমাধানের হার</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8">
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">🎯 কর্মক্ষমতা মেট্রিক্স</h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">গড় সমাধানের সময়:</span>
+                            <span class="text-green-300 font-bold">১৮ ঘন্টা</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">রোগী সন্তুষ্টি:</span>
+                            <span class="text-blue-300 font-bold">৮৭.৩%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">প্রথমবারে সমাধান:</span>
+                            <span class="text-purple-300 font-bold">৭৮.৫%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">এসকেলেশন রেট:</span>
+                            <span class="text-yellow-300 font-bold">১২.৭%</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">🔄 সংশোধনী ব্যবস্থা</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• অতিরিক্ত প্রশিক্ষণ প্রোগ্রাম</li>
+                        <li class="bangla-font">• রিসোর্স রিঅ্যালোকেশন</li>
+                        <li class="bangla-font">• ম্যানেজমেন্ট ইন্টারভেনশন</li>
+                        <li class="bangla-font">• পারফরমেন্স ইমপ্রুভমেন্ট প্ল্যান</li>
+                        <li class="bangla-font">• নিয়মিত মনিটরিং ও রিভিউ</li>
+                        <li class="bangla-font">• স্টেকহোল্ডার এনগেজমেন্ট</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">8 / 15</div>
+    </div>
+
+    <!-- Slide 9: Bengali Language Integration -->
+    <div class="slide bg-gradient-to-br from-emerald-900 to-teal-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center bangla-font">🇧🇩 ব্যাপক বাংলা ভাষা ইন্টিগ্রেশন</h1>
+            
+            <div class="grid grid-cols-3 gap-6 mb-8">
+                <div class="glass-effect rounded-3xl p-6 text-center">
+                    <div class="text-5xl mb-4">🗣️</div>
+                    <h3 class="text-xl font-bold mb-3 bangla-font">বহুভাষিক NLP</h3>
+                    <p class="text-sm bangla-font">বাংলা ও ইংরেজি উভয় ভাষায় প্রাকৃতিক ভাষা প্রক্রিয়াকরণ</p>
+                </div>
+                <div class="glass-effect rounded-3xl p-6 text-center">
+                    <div class="text-5xl mb-4">🎤</div>
+                    <h3 class="text-xl font-bold mb-3 bangla-font">ভয়েস রিকগনিশন</h3>
+                    <p class="text-sm bangla-font">বাংলা কণ্ঠস্বর চিনতে পারার উন্নত প্রযুক্তি</p>
+                </div>
+                <div class="glass-effect rounded-3xl p-6 text-center">
+                    <div class="text-5xl mb-4">📝</div>
+                    <h3 class="text-xl font-bold mb-3 bangla-font">স্মার্ট ট্রান্সলেশন</h3>
+                    <p class="text-sm bangla-font">রিয়েল-টাইম বাংলা-ইংরেজি অনুবাদ সিস্টেম</p>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 text-center bangla-font">🌐 সম্পূর্ণ বাংলা ইকোসিস্টেম</h3>
+                <div class="grid grid-cols-2 gap-8">
+                    <div>
+                        <h4 class="text-xl font-bold mb-4 bangla-font">📱 ইউজার ইন্টারফেস</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="bangla-font">• সম্পূর্ণ বাংলা মেনু ও নেভিগেশন</li>
+                            <li class="bangla-font">• বাংলা ফন্ট অপ্টিমাইজেশন</li>
+                            <li class="bangla-font">• কাস্টম বাংলা কিবোর্ড সাপোর্ট</li>
+                            <li class="bangla-font">• বাংলা ডেট ও টাইম ফরম্যাট</li>
+                            <li class="bangla-font">• স্থানীয় সংখ্যা পদ্ধতি</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 class="text-xl font-bold mb-4 bangla-font">🤖 এআই বাংলা প্রসেসিং</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li class="bangla-font">• বাংলা টেক্সট ক্লাসিফিকেশন</li>
+                            <li class="bangla-font">• সেন্টিমেন্ট অ্যানালাইসিস</li>
+                            <li class="bangla-font">• কিওয়ার্ড এক্সট্র্যাকশন</li>
+                            <li class="bangla-font">• বাংলা স্পেল চেকার</li>
+                            <li class="bangla-font">• কনটেক্সচুয়াল আন্ডারস্ট্যান্ডিং</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">🎯 বাংলা কন্টেন্ট অপ্টিমাইজেশন</h4>
+                    <div class="space-y-4">
+                        <div class="bg-blue-500/20 rounded-xl p-4">
+                            <h5 class="font-bold mb-2 bangla-font">স্মার্ট অটো-কমপ্লিট</h5>
+                            <p class="text-sm bangla-font">বাংলা টাইপিংয়ের জন্য প্রেডিক্টিভ টেক্সট</p>
+                        </div>
+                        <div class="bg-green-500/20 rounded-xl p-4">
+                            <h5 class="font-bold mb-2 bangla-font">কনটেক্সট-অ্যাওয়ার সাজেশন</h5>
+                            <p class="text-sm bangla-font">অভিযোগের ধরন অনুযায়ী বাংলা টেমপ্লেট</p>
+                        </div>
+                        <div class="bg-purple-500/20 rounded-xl p-4">
+                            <h5 class="font-bold mb-2 bangla-font">গ্রামার চেকিং</h5>
+                            <p class="text-sm bangla-font">বাংলা ব্যাকরণ ও বানান সংশোধন</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">📊 বাংলা অ্যানালিটিক্স</h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">বাংলা ভাষা ব্যবহার:</span>
+                            <span class="text-green-300 font-bold">৮৫%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">ভয়েস ইনপুট (বাংলা):</span>
+                            <span class="text-blue-300 font-bold">৬৭%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">অনুবাদ অ্যাকুরেসি:</span>
+                            <span class="text-purple-300 font-bold">৯৬%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">বাংলা NLP নির্ভুলতা:</span>
+                            <span class="text-yellow-300 font-bold">৯৪%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-3xl p-6">
+                <h4 class="text-xl font-bold mb-4 text-center bangla-font">🗺️ আঞ্চলিক ভাষা সাপোর্ট</h4>
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="text-center p-3 bg-white/10 rounded-xl">
+                        <div class="text-2xl mb-2">🏙️</div>
+                        <div class="text-sm bangla-font">ঢাকাইয়া</div>
+                    </div>
+                    <div class="text-center p-3 bg-white/10 rounded-xl">
+                        <div class="text-2xl mb-2">🌊</div>
+                        <div class="text-sm bangla-font">চট্টগাইয়া</div>
+                    </div>
+                    <div class="text-center p-3 bg-white/10 rounded-xl">
+                        <div class="text-2xl mb-2">🌿</div>
+                        <div class="text-sm bangla-font">সিলেটি</div>
+                    </div>
+                    <div class="text-center p-3 bg-white/10 rounded-xl">
+                        <div class="text-2xl mb-2">🌾</div>
+                        <div class="text-sm bangla-font">রাজশাহী</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">9 / 15</div>
+    </div>
+
+    <!-- Slide 10: Medical Directory Coverage -->
+    <div class="slide bg-gradient-to-br from-cyan-900 to-blue-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center bangla-font">🏥 সম্পূর্ণ মেডিকেল ডিরেক্টরি কভারেজ</h1>
+            
+            <div class="grid grid-cols-4 gap-4 mb-8">
+                <div class="glass-effect rounded-2xl p-4 text-center">
+                    <div class="text-4xl mb-3">🇧🇩</div>
+                    <div class="text-2xl font-bold text-blue-300">৮</div>
+                    <div class="text-sm bangla-font">বিভাগ</div>
+                </div>
+                <div class="glass-effect rounded-2xl p-4 text-center">
+                    <div class="text-4xl mb-3">🏛️</div>
+                    <div class="text-2xl font-bold text-green-300">৬৪</div>
+                    <div class="text-sm bangla-font">জেলা</div>
+                </div>
+                <div class="glass-effect rounded-2xl p-4 text-center">
+                    <div class="text-4xl mb-3">🏥</div>
+                    <div class="text-2xl font-bold text-purple-300">৮৫০+</div>
+                    <div class="text-sm bangla-font">হাসপাতাল</div>
+                </div>
+                <div class="glass-effect rounded-2xl p-4 text-center">
+                    <div class="text-4xl mb-3">🛏️</div>
+                    <div class="text-2xl font-bold text-yellow-300">৫০,০০০+</div>
+                    <div class="text-sm bangla-font">শয্যা</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <div class="glass-effect rounded-3xl p-6">
+                    <h3 class="text-xl font-bold mb-4 bangla-font">🗺️ বিভাগভিত্তিক কভারেজ</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 bg-blue-500/20 rounded-xl">
+                            <span class="bangla-font">ঢাকা বিভাগ</span>
+                            <div class="text-right">
+                                <div class="font-bold">১৩ জেলা</div>
+                                <div class="text-sm text-gray-300">২৫০+ হাসপাতাল</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-green-500/20 rounded-xl">
+                            <span class="bangla-font">চট্টগ্রাম বিভাগ</span>
+                            <div class="text-right">
+                                <div class="font-bold">১১ জেলা</div>
+                                <div class="text-sm text-gray-300">১৮০+ হাসপাতাল</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-purple-500/20 rounded-xl">
+                            <span class="bangla-font">রাজশাহী বিভাগ</span>
+                            <div class="text-right">
+                                <div class="font-bold">৮ জেলা</div>
+                                <div class="text-sm text-gray-300">১২০+ হাসপাতাল</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-orange-500/20 rounded-xl">
+                            <span class="bangla-font">খুলনা বিভাগ</span>
+                            <div class="text-right">
+                                <div class="font-bold">১০ জেলা</div>
+                                <div class="text-sm text-gray-300">১১০+ হাসপাতাল</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-effect rounded-3xl p-6">
+                    <h3 class="text-xl font-bold mb-4 bangla-font">🏥 হাসপাতালের ধরন</h3>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center p-3 bg-red-500/20 rounded-xl">
+                            <span class="bangla-font">মেডিকেল কলেজ</span>
+                            <div class="text-right">
+                                <div class="font-bold">৩৭টি</div>
+                                <div class="text-sm text-gray-300">২৫,০০০+ শয্যা</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-blue-500/20 rounded-xl">
+                            <span class="bangla-font">জেলা সদর হাসপাতাল</span>
+                            <div class="text-right">
+                                <div class="font-bold">৬৪টি</div>
+                                <div class="text-sm text-gray-300">১৮,০০০+ শয্যা</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-green-500/20 rounded-xl">
+                            <span class="bangla-font">উপজেলা স্বাস্থ্য কমপ্লেক্স</span>
+                            <div class="text-right">
+                                <div class="font-bold">৪২০+</div>
+                                <div class="text-sm text-gray-300">৫,০০০+ শয্যা</div>
+                            </div>
+                        </div>
+                        <div class="flex justify-between items-center p-3 bg-purple-500/20 rounded-xl">
+                            <span class="bangla-font">বিশেষায়িত হাসপাতাল</span>
+                            <div class="text-right">
+                                <div class="font-bold">৩৫০+</div>
+                                <div class="text-sm text-gray-300">২,০০০+ শয্যা</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-3xl p-8">
+                <h3 class="text-2xl font-bold mb-6 text-center bangla-font">🔍 স্মার্ট সার্চ ও ফিল্টারিং</h3>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-blue-500/20 rounded-2xl p-6 text-center">
+                        <div class="text-4xl mb-3">🗺️</div>
+                        <h4 class="font-bold mb-2 bangla-font">জিও-লোকেশন সার্চ</h4>
+                        <p class="text-sm bangla-font">নিকটতম হাসপাতাল খুঁজে পেতে GPS ব্যবহার</p>
+                    </div>
+                    <div class="bg-green-500/20 rounded-2xl p-6 text-center">
+                        <div class="text-4xl mb-3">🏥</div>
+                        <h4 class="font-bold mb-2 bangla-font">বিশেষত্ব ফিল্টার</h4>
+                        <p class="text-sm bangla-font">নির্দিষ্ট বিভাগ ও সেবা অনুযায়ী খোঁজ</p>
+                    </div>
+                    <div class="bg-purple-500/20 rounded-2xl p-6 text-center">
+                        <div class="text-4xl mb-3">⭐</div>
+                        <h4 class="font-bold mb-2 bangla-font">রেটিং ও রিভিউ</h4>
+                        <p class="text-sm bangla-font">রোগীদের মতামত ও হাসপাতালের র‍্যাঙ্কিং</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">10 / 15</div>
+    </div>
+
+    <!-- Slide 11: Advanced AI Features -->
+    <div class="slide bg-gradient-to-br from-violet-900 to-purple-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center">🤖 Advanced AI Features & Capabilities</h1>
+            
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">🧠</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">মেশিন লার্নিং মডেল</h3>
+                            <p class="text-gray-300">Advanced ML Algorithms</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bangla-font">• ডিপ লার্নিং নিউরাল নেটওয়ার্ক</li>
+                        <li class="bangla-font">• র‍্যান্ডম ফরেস্ট ক্লাসিফায়ার</li>
+                        <li class="bangla-font">• সাপোর্ট ভেক্টর মেশিন (SVM)</li>
+                        <li class="bangla-font">• গ্রেডিয়েন্ট বুস্টিং অ্যালগরিদম</li>
+                        <li class="bangla-font">• এনসেম্বল মেথড ইন্টিগ্রেশন</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">🗣️</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">প্রাকৃতিক ভাষা প্রক্রিয়াকরণ</h3>
+                            <p class="text-gray-300">Natural Language Processing</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bangla-font">• BERT-ভিত্তিক বাংলা মডেল</li>
+                        <li class="bangla-font">• নেমড এন্টিটি রিকগনিশন (NER)</li>
+                        <li class="bangla-font">• সেন্টিমেন্ট অ্যানালাইসিস</li>
+                        <li class="bangla-font">• টপিক মডেলিং (LDA)</li>
+                        <li class="bangla-font">• টেক্সট সামারাইজেশন</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 text-center bangla-font">🔮 ভবিষ্যদ্বাণীমূলক অ্যানালিটিক্স</h3>
+                <div class="grid grid-cols-4 gap-4">
+                    <div class="bg-blue-500/20 rounded-2xl p-4 text-center">
+                        <div class="text-3xl mb-2">📊</div>
+                        <div class="text-xl font-bold text-blue-300">৯৪%</div>
+                        <div class="text-sm bangla-font">সমাধান সময় পূর্বাভাস</div>
+                    </div>
+                    <div class="bg-green-500/20 rounded-2xl p-4 text-center">
+                        <div class="text-3xl mb-2">🎯</div>
+                        <div class="text-xl font-bold text-green-300">৯১%</div>
+                        <div class="text-sm bangla-font">এসকেলেশন প্রেডিকশন</div>
+                    </div>
+                    <div class="bg-purple-500/20 rounded-2xl p-4 text-center">
+                        <div class="text-3xl mb-2">😊</div>
+                        <div class="text-xl font-bold text-purple-300">৮৮%</div>
+                        <div class="text-sm bangla-font">রোগী সন্তুষ্টি পূর্বাভাস</div>
+                    </div>
+                    <div class="bg-orange-500/20 rounded-2xl p-4 text-center">
+                        <div class="text-3xl mb-2">📈</div>
+                        <div class="text-xl font-bold text-orange-300">৯৬%</div>
+                        <div class="text-sm bangla-font">ট্রেন্ড অ্যানালাইসিস</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6">
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">🔍 স্মার্ট ডিটেকশন</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• স্প্যাম কন্টেন্ট সনাক্তকরণ</li>
+                        <li class="bangla-font">• ডুপ্লিকেট অভিযোগ মার্জিং</li>
+                        <li class="bangla-font">• ফেক রিপোর্ট ফিল্টারিং</li>
+                        <li class="bangla-font">• অ্যানোমালি ডিটেকশন</li>
+                        <li class="bangla-font">• প্যাটার্ন রিকগনিশন</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">🎯 স্বয়ংক্রিয় রাউটিং</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• ইন্টেলিজেন্ট ক্যাটাগরাইজেশন</li>
+                        <li class="bangla-font">• প্রায়োরিটি অ্যাসাইনমেন্ট</li>
+                        <li class="bangla-font">• ডিপার্টমেন্ট রাউটিং</li>
+                        <li class="bangla-font">• এক্সপার্ট অ্যাসাইনমেন্ট</li>
+                        <li class="bangla-font">• ওয়ার্কলোড ব্যালান্সিং</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">📊 রিয়েল-টাইম ইনসাইট</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• লাইভ পারফরমেন্স মেট্রিক্স</li>
+                        <li class="bangla-font">• ট্রেন্ড অ্যানালাইসিস</li>
+                        <li class="bangla-font">• প্রেডিক্টিভ অ্যালার্ট</li>
+                        <li class="bangla-font">• কাস্টম ড্যাশবোর্ড</li>
+                        <li class="bangla-font">• অটোমেটেড রিপোর্টিং</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">11 / 15</div>
+    </div>
+
+    <!-- Slide 12: Additional Functions -->
+    <div class="slide bg-gradient-to-br from-rose-900 to-pink-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center bangla-font">⚡ অতিরিক্ত ফিচার ও সেবা</h1>
+            
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">🚨</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">জরুরি সেবা</h3>
+                            <p class="text-gray-300">Emergency Services</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bangla-font">• ২৪/৭ জরুরি হটলাইন (৯৯৯)</li>
+                        <li class="bangla-font">• স্বাস্থ্য বাতায়ন (১৬২৬৩)</li>
+                        <li class="bangla-font">• অ্যাম্বুলেন্স রিকোয়েস্ট সিস্টেম</li>
+                        <li class="bangla-font">• জিপিএস ট্র্যাকিং</li>
+                        <li class="bangla-font">• তাৎক্ষণিক মেডিকেল সাপোর্ট</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">💊</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">ওষুধ ট্র্যাকার</h3>
+                            <p class="text-gray-300">Medicine Tracker</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bangla-font">• রিয়েল-টাইম ওষুধ স্টক তথ্য</li>
+                        <li class="bangla-font">• eLMIS/SCMP ইন্টিগ্রেশন</li>
+                        <li class="bangla-font">• ওষুধের উপলব্ধতা চেক</li>
+                        <li class="bangla-font">• অটো রিঅর্ডার সিস্টেম</li>
+                        <li class="bangla-font">• এক্সপায়ারি ডেট ট্র্যাকিং</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">👨‍⚕️</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">ডাক্তার সময়সূচী</h3>
+                            <p class="text-gray-300">Doctor Schedule System</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bangla-font">• বায়োমেট্রিক উপস্থিতি ট্র্যাকিং</li>
+                        <li class="bangla-font">• রিয়েল-টাইম ডাক্তার অবস্থান</li>
+                        <li class="bangla-font">• শিফট ও ডিউটি রোস্টার</li>
+                        <li class="bangla-font">• বিশেষজ্ঞ ডাক্তার খোঁজ</li>
+                        <li class="bangla-font">• অ্যাপয়েন্টমেন্ট বুকিং</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-8">
+                    <div class="flex items-center mb-6">
+                        <div class="text-5xl mr-4">💡</div>
+                        <div>
+                            <h3 class="text-2xl font-bold bangla-font">এআই স্বাস্থ্য টিপস</h3>
+                            <p class="text-gray-300">AI Health Tips</p>
+                        </div>
+                    </div>
+                    <ul class="space-y-3 text-sm">
+                        <li class="bangla-font">• ব্যক্তিগতকৃত স্বাস্থ্য পরামর্শ</li>
+                        <li class="bangla-font">• প্রতিরোধমূলক যত্নের তথ্য</li>
+                        <li class="bangla-font">• মৌসুমী স্বাস্থ্য সতর্কতা</li>
+                        <li class="bangla-font">• পুষ্টি ও ব্যায়াম গাইড</li>
+                        <li class="bangla-font">• মানসিক স্বাস্থ্য সাপোর্ট</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-3xl p-8">
+                <h3 class="text-2xl font-bold mb-6 text-center bangla-font">🔧 অ্যাডভান্সড ফিচার</h3>
+                <div class="grid grid-cols-4 gap-6">
+                    <div class="bg-blue-500/20 rounded-2xl p-4 text-center">
+                        <div class="text-3xl mb-3">🎤</div>
+                        <h4 class="font-bold mb-2 bangla-font">ভয়েস রিকগনিশন</h4>
+                        <p class="text-xs bangla-font">বহুভাষিক কণ্ঠস্বর চিনতে পারা</p>
+                    </div>
+                    <div class="bg-green-500/20 rounded-2xl p-4 text-center">
+                        <div class="text-3xl mb-3">📷</div>
+                        <h4 class="font-bold mb-2 bangla-font">ইমেজ অ্যানালাইসিস</h4>
+                        <p class="text-xs bangla-font">কম্পিউটার ভিশন প্রযুক্তি</p>
+                    </div>
+                    <div class="bg-purple-500/20 rounded-2xl p-4 text-center">
+                        <div class="text-3xl mb-3">📱</div>
+                        <h4 class="font-bold mb-2 bangla-font">মোবাইল অ্যাপ</h4>
+                        <p class="text-xs bangla-font">iOS ও Android সাপোর্ট</p>
+                    </div>
+                    <div class="bg-orange-500/20 rounded-2xl p-4 text-center">
+                        <div class="text-3xl mb-3">🔔</div>
+                        <h4 class="font-bold mb-2 bangla-font">স্মার্ট নোটিফিকেশন</h4>
+                        <p class="text-xs bangla-font">রিয়েল-টাইম আপডেট</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">12 / 15</div>
+    </div>
+
+    <!-- Slide 13: Implementation Timeline -->
+    <div class="slide bg-gradient-to-br from-amber-900 to-orange-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center">📅 Implementation Timeline & Roadmap</h1>
+            
+            <div class="glass-effect rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 text-center bangla-font">🚀 পর্যায়ক্রমিক বাস্তবায়ন পরিকল্পনা</h3>
+                <div class="space-y-6">
+                    <!-- Phase 1 -->
+                    <div class="flex items-center space-x-6">
+                        <div class="w-24 h-24 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            Phase 1
+                        </div>
+                        <div class="flex-1 bg-blue-500/20 rounded-2xl p-6">
+                            <h4 class="text-xl font-bold mb-2 bangla-font">প্রাথমিক সেটআপ (১-৩ মাস)</h4>
+                            <ul class="text-sm space-y-1">
+                                <li class="bangla-font">• কোর এআই সিস্টেম ডেভেলপমেন্ট</li>
+                                <li class="bangla-font">• বেসিক ওয়েব পোর্টাল লঞ্চ</li>
+                                <li class="bangla-font">• ঢাকা বিভাগে পাইলট টেস্টিং</li>
+                                <li class="bangla-font">• HRIS ইন্টিগ্রেশন</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 2 -->
+                    <div class="flex items-center space-x-6">
+                        <div class="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            Phase 2
+                        </div>
+                        <div class="flex-1 bg-green-500/20 rounded-2xl p-6">
+                            <h4 class="text-xl font-bold mb-2 bangla-font">সম্প্রসারণ (৪-৬ মাস)</h4>
+                            <ul class="text-sm space-y-1">
+                                <li class="bangla-font">• মোবাইল অ্যাপ লঞ্চ</li>
+                                <li class="bangla-font">• SMS/USSD সিস্টেম চালু</li>
+                                <li class="bangla-font">• চট্টগ্রাম ও সিলেট বিভাগে সম্প্রসারণ</li>
+                                <li class="bangla-font">• eLMIS/SCMP ইন্টিগ্রেশন</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Phase 3 -->
+                    <div class="flex items-center space-x-6">
+                        <div class="w-24 h-24 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold text-xl">
+                            Phase 3
+                        </div>
+                        <div class="flex-1 bg-purple-500/20 rounded-2xl p-6">
+                            <h4 class="text-xl font-bold mb-2 bangla-font">সম্পূর্ণ বাস্তবায়ন (৭-১২ মাস)</h4>
+                            <ul class="text-sm space-y-1">
+                                <li class="bangla-font">• সব ৮ বিভাগে সম্পূর্ণ কভারেজ</li>
+                                <li class="bangla-font">• IVR ও কিয়স্ক সিস্টেম</li>
+                                <li class="bangla-font">• অ্যাডভান্সড এআই ফিচার</li>
+                                <li class="bangla-font">• সম্পূর্ণ অ্যাকাউন্টেবিলিটি সিস্টেম</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8">
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">📊 মাইলস্টোন ও KPI</h4>
+                    <div class="space-y-3">
+                        <div class="bg-blue-500/20 rounded-xl p-3">
+                            <div class="font-bold bangla-font">৩ মাস:</div>
+                            <div class="text-sm bangla-font">১০০+ দৈনিক অভিযোগ প্রক্রিয়াকরণ</div>
+                        </div>
+                        <div class="bg-green-500/20 rounded-xl p-3">
+                            <div class="font-bold bangla-font">৬ মাস:</div>
+                            <div class="text-sm bangla-font">৮৫%+ সমাধানের হার অর্জন</div>
+                        </div>
+                        <div class="bg-purple-500/20 rounded-xl p-3">
+                            <div class="font-bold bangla-font">১২ মাস:</div>
+                            <div class="text-sm bangla-font">৯০%+ রোগী সন্তুষ্টি</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">💰 বাজেট ও রিসোর্স</h4>
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">সফটওয়্যার ডেভেলপমেন্ট:</span>
+                            <span class="font-bold">৪০%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">হার্ডওয়্যার ও ইনফ্রা:</span>
+                            <span class="font-bold">৩০%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">প্রশিক্ষণ ও সাপোর্ট:</span>
+                            <span class="font-bold">২০%</span>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm bangla-font">মার্কেটিং ও আউটরিচ:</span>
+                            <span class="font-bold">১০%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">13 / 15</div>
+    </div>
+
+    <!-- Slide 14: Expected Impact -->
+    <div class="slide bg-gradient-to-br from-emerald-900 to-green-900 flex-col justify-center items-center p-8">
+        <div class="slide-content max-w-6xl">
+            <h1 class="text-5xl font-bold mb-12 text-center bangla-font">📈 প্রত্যাশিত প্রভাব ও সুবিধা</h1>
+            
+            <div class="grid grid-cols-2 gap-8 mb-8">
+                <div class="glass-effect rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 bangla-font">📊 পরিমাণগত উন্নতি</h3>
+                    <div class="space-y-4">
+                        <div class="bg-green-500/20 rounded-xl p-4">
+                            <div class="flex justify-between items-center">
+                                <span class="bangla-font">সমাধানের হার:</span>
+                                <div class="text-right">
+                                    <div class="text-red-300 line-through">৬৫%</div>
+                                    <div class="text-green-300 font-bold">৮৭%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-blue-500/20 rounded-xl p-4">
+                            <div class="flex justify-between items-center">
+                                <span class="bangla-font">গড় সমাধানের সময়:</span>
+                                <div class="text-right">
+                                    <div class="text-red-300 line-through">৭-১০ দিন</div>
+                                    <div class="text-green-300 font-bold">১৮-২৪ ঘন্টা</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-purple-500/20 rounded-xl p-4">
+                            <div class="flex justify-between items-center">
+                                <span class="bangla-font">রোগী সন্তুষ্টি:</span>
+                                <div class="text-right">
+                                    <div class="text-red-300 line-through">৬৫%</div>
+                                    <div class="text-green-300 font-bold">৯৫%</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-orange-500/20 rounded-xl p-4">
+                            <div class="flex justify-between items-center">
+                                <span class="bangla-font">অপারেশনাল দক্ষতা:</span>
+                                <div class="text-right">
+                                    <div class="text-green-300 font-bold">+৭৫%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="glass-effect rounded-3xl p-8">
+                    <h3 class="text-2xl font-bold mb-6 bangla-font">🎯 গুণগত সুবিধা</h3>
+                    <ul class="space-y-3 text-sm">
+                        <li class="flex items-center space-x-3">
+                            <span class="text-green-400">✓</span>
+                            <span class="bangla-font">স্বচ্ছতা ও জবাবদিহিতা বৃদ্ধি</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-green-400">✓</span>
+                            <span class="bangla-font">রোগীদের আস্থা ও বিশ্বাস বৃদ্ধি</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-green-400">✓</span>
+                            <span class="bangla-font">স্বাস্থ্যসেবার মান উন্নতি</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-green-400">✓</span>
+                            <span class="bangla-font">দুর্নীতি ও অনিয়ম হ্রাস</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-green-400">✓</span>
+                            <span class="bangla-font">ডেটা-চালিত সিদ্ধান্ত গ্রহণ</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-green-400">✓</span>
+                            <span class="bangla-font">সিস্টেমিক সমস্যা চিহ্নিতকরণ</span>
+                        </li>
+                        <li class="flex items-center space-x-3">
+                            <span class="text-green-400">✓</span>
+                            <span class="bangla-font">প্রতিরোধমূলক ব্যবস্থা গ্রহণ</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="glass-effect rounded-3xl p-8 mb-8">
+                <h3 class="text-2xl font-bold mb-6 text-center bangla-font">🌍 সামাজিক প্রভাব</h3>
+                <div class="grid grid-cols-3 gap-6">
+                    <div class="bg-blue-500/20 rounded-2xl p-6 text-center">
+                        <div class="text-4xl mb-3">👥</div>
+                        <h4 class="font-bold mb-2 bangla-font">জনগণের ক্ষমতায়ন</h4>
+                        <p class="text-sm bangla-font">রোগীরা সহজে অভিযোগ করতে ও ট্র্যাক করতে পারবেন</p>
+                    </div>
+                    <div class="bg-green-500/20 rounded-2xl p-6 text-center">
+                        <div class="text-4xl mb-3">🏥</div>
+                        <h4 class="font-bold mb-2 bangla-font">স্বাস্থ্যসেবা উন্নতি</h4>
+                        <p class="text-sm bangla-font">সিস্টেমিক সমস্যা সমাধানে দ্রুত ব্যবস্থা</p>
+                    </div>
+                    <div class="bg-purple-500/20 rounded-2xl p-6 text-center">
+                        <div class="text-4xl mb-3">📊</div>
+                        <h4 class="font-bold mb-2 bangla-font">নীতি প্রণয়ন</h4>
+                        <p class="text-sm bangla-font">ডেটা-ভিত্তিক স্বাস্থ্যনীতি প্রণয়ন</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-8">
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">💰 অর্থনৈতিক সুবিধা</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• প্রশাসনিক খরচ ৪০% হ্রাস</li>
+                        <li class="bangla-font">• কর্মী উৎপাদনশীলতা ৬০% বৃদ্ধি</li>
+                        <li class="bangla-font">• রিসোর্স অপ্টিমাইজেশন</li>
+                        <li class="bangla-font">• দুর্নীতি হ্রাসে সাশ্রয়</li>
+                        <li class="bangla-font">• দীর্ঘমেয়াদী ROI ইতিবাচক</li>
+                    </ul>
+                </div>
+                <div class="glass-effect rounded-3xl p-6">
+                    <h4 class="text-xl font-bold mb-4 bangla-font">🎯 দীর্ঘমেয়াদী লক্ষ্য</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="bangla-font">• SDG 3 (Good Health) অর্জন</li>
+                        <li class="bangla-font">• ডিজিটাল বাংলাদেশ বিনির্মাণ</li>
+                        <li class="bangla-font">• আন্তর্জাতিক মানের স্বাস্থ্যসেবা</li>
+                        <li class="bangla-font">• স্মার্ট গভর্নেন্স প্রতিষ্ঠা</li>
+                        <li class="bangla-font">• জনগণের আস্থা পুনরুদ্ধার</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="slide-number">14 / 15</div>
+    </div>
+
+    <!-- Slide 15: Conclusion -->
+    <div class="slide gradient-bg flex-col justify-center items-center text-center p-8">
+        <div class="slide-content max-w-6xl">
+            <div class="mb-8">
+                <div class="w-32 h-32 mx-auto gradient-bg rounded-full flex items-center justify-center mb-8 pulse-glow">
+                    <span class="text-6xl">🚀</span>
+                </div>
+            </div>
+            <h1 class="text-6xl font-bold mb-8 bangla-font">ভবিষ্যতের স্বাস্থ্যসেবা</h1>
+            <h2 class="text-4xl font-semibold mb-12">The Future of Healthcare is Here</h2>
+            
+            <div class="glass-effect rounded-3xl p-12 mb-12">
+                <h3 class="text-3xl font-bold mb-8 bangla-font">🎯 আমাদের প্রতিশ্রুতি</h3>
+                <div class="grid grid-cols-3 gap-8 text-lg">
+                    <div>
+                        <div class="text-4xl mb-4">🤖</div>
+                        <div class="font-bold bangla-font">এআই-চালিত</div>
+                        <div class="bangla-font">স্মার্ট ও দক্ষ সমাধান</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl mb-4">🌐</div>
+                        <div class="font-bold bangla-font">সর্বজনীন</div>
+                        <div class="bangla-font">সবার জন্য অ্যাক্সেসিবল</div>
+                    </div>
+                    <div>
+                        <div class="text-4xl mb-4">⚡</div>
+                        <div class="font-bold bangla-font">দ্রুত ও নির্ভরযোগ্য</div>
+                        <div class="bangla-font">২৪/৭ সেবা প্রদান</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-2xl mb-12 space-y-4">
+                <p class="bangla-font">🇧🇩 একটি স্বাস্থ্যকর বাংলাদেশ গড়ার অঙ্গীকার</p>
+                <p>Building a Healthier Bangladesh with AI Innovation</p>
+            </div>
+
+            <div class="glass-effect rounded-2xl px-12 py-6 inline-block">
+                <div class="text-3xl font-bold bangla-font">ধন্যবাদ • Thank You</div>
+                <div class="text-lg mt-2 bangla-font">প্রশ্ন ও আলোচনার জন্য প্রস্তুত</div>
+            </div>
+        </div>
+        <div class="slide-number">15 / 15</div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const totalSlides = 15;
+
+        function updateSlideCounter() {
+            document.getElementById('slide-counter').textContent = ${currentSlide + 1} / ${totalSlides};
+            document.getElementById('progress-bar').style.width = ${((currentSlide + 1) / totalSlides) * 100}%;
+        }
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            slides.forEach(slide => slide.classList.remove('active'));
+            
+            if (n >= totalSlides) currentSlide = 0;
+            if (n < 0) currentSlide = totalSlides - 1;
+            
+            slides[currentSlide].classList.add('active');
+            updateSlideCounter();
+        }
+
+        function nextSlide() {
+            currentSlide++;
+            showSlide(currentSlide);
+        }
+
+        function previousSlide() {
+            currentSlide--;
+            showSlide(currentSlide);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight' || e.key === ' ') {
+                nextSlide();
+            } else if (e.key === 'ArrowLeft') {
+                previousSlide();
+            } else if (e.key === 'Home') {
+                currentSlide = 0;
+                showSlide(currentSlide);
+            } else if (e.key === 'End') {
+                currentSlide = totalSlides - 1;
+                showSlide(currentSlide);
+            }
+        });
+
+        // Initialize
+        updateSlideCounter();
+
+        // Auto-advance slides (optional - remove if not needed)
+        // setInterval(nextSlide, 30000); // Auto-advance every 30 seconds
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'97af2fa806b225b1',t:'MTc1NzE3NDQ5OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
