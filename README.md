@@ -1,2 +1,0 @@
-# CivicCure
-CivicCure
